@@ -4,769 +4,462 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10120f">
-<meta name="description" content="GameScope+ helps PC gamers discover live game deals, compare prices, find free games and read gaming news.">
-<title>GameScope+ | Play smarter. Spend less.</title>
-
+<meta name="theme-color" content="#090b14">
+<title>GameScope+ — Play. Share. Compete.</title>
 <style>
-:root{
-  --bg:#10120f;
-  --panel:#191c17;
-  --panel2:#20251d;
-  --border:#30372b;
-  --text:#f4f6ee;
-  --muted:#a5ad9b;
-  --accent:#c5f56a;
-  --accent2:#a8dc4f;
-  --danger:#ff7777;
-  --radius:16px;
-}
+:root{--bg:#090b14;--panel:#111522;--panel2:#171c2c;--border:#272e43;--text:#f3f5ff;--muted:#969fb8;--purple:#9b75ff;--blue:#56b7ff;--green:#55e0ae;--gold:#ffd166;--red:#ff7285}
 *{box-sizing:border-box}
-html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{
-  margin:0;background:var(--bg);color:var(--text);
-  font-family:Inter,Segoe UI,Arial,sans-serif;line-height:1.55;
-}
-a{color:inherit;text-decoration:none}
-button,input,select{font:inherit}
+body{margin:0;background:radial-gradient(ellipse at 50% -20%,#25204b 0,transparent 48%),var(--bg);color:var(--text);font:15px/1.5 Inter,system-ui,-apple-system,Segoe UI,sans-serif}
+button,input,textarea,select{font:inherit}
 button{cursor:pointer}
-button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{
-  outline:2px solid var(--accent);outline-offset:3px
-}
-header{
-  position:sticky;top:0;z-index:20;
-  background:rgba(16,18,15,.95);backdrop-filter:blur(14px);
-  border-bottom:1px solid var(--border)
-}
-.nav{
-  max-width:1240px;margin:auto;padding:14px 22px;
-  display:flex;align-items:center;justify-content:space-between;gap:18px
-}
-.logo{font-size:23px;font-weight:900;letter-spacing:-1px}
-.logo span{color:var(--accent)}
-nav{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
-nav a{font-size:13px;font-weight:750;color:#d7ddcf}
-nav a:hover{color:var(--accent)}
-.menu-btn{display:none}
-main,.footer-inner{max-width:1240px;margin:auto;padding:0 22px}
-.hero{padding:55px 0 30px}
-.eyebrow{color:var(--accent);font-size:11px;letter-spacing:2px;font-weight:900}
-h1{font-size:clamp(38px,6vw,68px);line-height:1.03;letter-spacing:-2.8px;margin:12px 0}
-h1 span{color:var(--accent)}
-h2{font-size:27px;letter-spacing:-.7px;margin:0}
-h3{margin:0}
-p{color:var(--muted)}
-.hero p{max-width:600px;font-size:16px}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:24px}
-.btn{
-  display:inline-flex;align-items:center;justify-content:center;gap:8px;
-  padding:11px 16px;border-radius:10px;border:1px solid var(--border);
-  background:var(--panel2);color:var(--text);font-weight:800;font-size:13px
-}
-.btn.primary{background:var(--accent);color:#18200e;border-color:var(--accent)}
-.btn:hover{filter:brightness(1.1)}
-.btn:disabled{opacity:.5;cursor:not-allowed}
-section{padding:35px 0}
-.section-head{
-  display:flex;align-items:center;justify-content:space-between;
-  gap:15px;flex-wrap:wrap;margin-bottom:20px
-}
-.section-head p{margin:5px 0 0;font-size:13px}
-.live-panel{
-  padding:22px;background:linear-gradient(130deg,#1b2416,#191c17 60%);
-  border:1px solid #3d4b2d;border-radius:20px;margin:15px 0 22px
-}
-.live-top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.live-tag{color:var(--accent);font-size:11px;font-weight:900;letter-spacing:1.3px}
-.status{font-size:12px;color:var(--muted)}
-.status::before{content:"";display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);margin-right:7px}
-.toolbar{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0}
-.field{
-  background:#121510;border:1px solid var(--border);border-radius:10px;
-  padding:11px 13px;color:var(--text);min-width:0
-}
-.field::placeholder{color:#828a79}
-.search{flex:1;min-width:180px}
-select.field{cursor:pointer}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.card{
-  background:var(--panel);border:1px solid var(--border);
-  border-radius:var(--radius);overflow:hidden;min-width:0;
-  transition:transform .18s,border-color .18s
-}
-.card:hover{transform:translateY(-3px);border-color:#647a47}
-.cover{
-  position:relative;height:145px;background:#242a20;
-  display:flex;align-items:center;justify-content:center;overflow:hidden
-}
-.cover img{width:100%;height:100%;object-fit:cover}
-.cover-fallback{font-size:38px;color:var(--accent);font-weight:900}
-.discount{
-  position:absolute;top:10px;left:10px;background:var(--accent);
-  color:#17200e;border-radius:7px;padding:5px 7px;
-  font-size:11px;font-weight:950
-}
-.card-body{padding:13px}
-.card-title{font-size:14px;font-weight:850;line-height:1.35;min-height:38px}
-.store{font-size:11px;color:var(--muted);margin:7px 0}
-.price-row{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:10px 0}
-.price{font-size:21px;font-weight:900;color:var(--accent)}
-.old-price{font-size:12px;color:#858d7e;text-decoration:line-through}
-.card-actions{display:flex;gap:7px;margin-top:12px}
-.card-actions .btn{flex:1;padding:9px 6px;font-size:11px}
-.heart{min-width:38px!important;flex:0 0 38px!important}
-.heart.saved{color:var(--accent);border-color:var(--accent)}
-.note{font-size:11px;color:var(--muted);margin-top:15px}
-.quick-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:13px}
-.quick{
-  padding:19px;background:var(--panel);border:1px solid var(--border);
-  border-radius:15px;display:block
-}
-.quick:hover{border-color:var(--accent)}
-.quick-icon{font-size:26px}
-.quick h3{font-size:15px;margin-top:9px}
-.quick p{font-size:12px;margin:5px 0 0}
-.library-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px}
-.game-cover{height:150px;display:flex;align-items:center;justify-content:center;background:#22291e;overflow:hidden}
-.game-cover img{width:100%;height:100%;object-fit:cover}
-.game-cover .cover-fallback{font-size:42px}
-.game-desc{font-size:12px;min-height:38px;color:var(--muted);margin:8px 0}
-.pill{display:inline-block;border:1px solid var(--border);border-radius:20px;padding:3px 8px;font-size:10px;color:var(--muted)}
-.news-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
-.news-item{padding:17px;background:var(--panel);border:1px solid var(--border);border-radius:13px}
-.news-item h3{font-size:15px;line-height:1.45;margin:8px 0}
-.news-item p{font-size:12px;margin:5px 0}
-.news-item a{color:var(--accent);font-size:12px;font-weight:800}
-.help-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
-.help-item{padding:17px;background:var(--panel);border:1px solid var(--border);border-radius:13px}
-.help-item h3{font-size:14px}
-.help-item p{font-size:12px}
-.help-item a{color:var(--accent);font-size:12px;font-weight:800}
-.empty{grid-column:1/-1;padding:30px;text-align:center;border:1px dashed var(--border);border-radius:14px;color:var(--muted)}
-.loading{padding:30px;text-align:center;color:var(--muted)}
-.error{color:var(--danger);font-size:12px;margin-top:10px}
-footer{margin-top:30px;border-top:1px solid var(--border);padding:24px 0;color:var(--muted);font-size:12px}
-.footer-inner{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
-.modal-backdrop{
-  position:fixed;inset:0;z-index:50;background:rgba(0,0,0,.78);
-  display:none;align-items:center;justify-content:center;padding:18px
-}
-.modal-backdrop.open{display:flex}
-.modal{
-  background:var(--panel);border:1px solid var(--border);border-radius:18px;
-  width:min(720px,100%);max-height:85vh;overflow:auto;padding:22px
-}
-.modal-head{display:flex;justify-content:space-between;gap:15px;align-items:start}
-.modal-head h2{font-size:22px}
-.compare-row{
-  display:flex;justify-content:space-between;align-items:center;gap:12px;
-  padding:13px 0;border-bottom:1px solid var(--border)
-}
-.compare-row:last-child{border-bottom:0}
-.compare-store{font-size:13px;font-weight:800}
-.compare-price{font-weight:900;color:var(--accent)}
-.small{font-size:11px;color:var(--muted)}
-hr{border:0;border-top:1px solid var(--border);margin:20px 0}
-@media(max-width:950px){
-  .grid,.library-grid{grid-template-columns:repeat(3,minmax(0,1fr))}
-  .quick-grid,.help-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-}
-@media(max-width:650px){
-  .nav{padding:12px 16px;align-items:flex-start}
-  nav{gap:12px;justify-content:flex-end}
-  nav a{font-size:11px}
-  main,.footer-inner{padding-left:16px;padding-right:16px}
-  .hero{padding-top:40px}
-  h1{letter-spacing:-1.8px}
-  .grid,.library-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}
-  .cover,.game-cover{height:120px}
-  .card-body{padding:10px}
-  .card-title{font-size:12px}
-  .price{font-size:18px}
-  .news-list{grid-template-columns:1fr}
-  .live-panel{padding:15px}
-  .section-head h2{font-size:23px}
-}
-@media(max-width:390px){
-  .logo{font-size:20px}
-  nav{gap:8px}
-  nav a{font-size:10px}
-  .grid,.library-grid{gap:8px}
-  .card-actions .btn{font-size:10px}
-}
+a{color:inherit;text-decoration:none}
+button:focus-visible,input:focus-visible,textarea:focus-visible,select:focus-visible{outline:2px solid var(--purple);outline-offset:2px}
+.topbar{height:72px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 max(20px,calc((100% - 1400px)/2));border-bottom:1px solid var(--border);background:#0b0d17ed;position:sticky;top:0;z-index:10;backdrop-filter:blur(18px)}
+.brand{font-weight:950;font-size:23px;letter-spacing:-1px;white-space:nowrap}.brand span{color:var(--purple)}
+.brand small{display:block;font-size:9px;letter-spacing:3px;color:var(--muted);font-weight:700}
+.search{width:min(360px,35vw);padding:11px 14px;border:1px solid var(--border);background:var(--panel);border-radius:12px;color:var(--text)}
+.btn{border:1px solid var(--border);background:var(--panel2);color:var(--text);padding:10px 14px;border-radius:10px;font-weight:750;transition:.2s}
+.btn:hover{border-color:var(--purple);transform:translateY(-1px)}
+.btn.primary{background:linear-gradient(110deg,#8158ee,#4d7bfa);border:0;color:white}
+.btn.green{background:#153c35;border-color:#285c4d;color:#80f0c5}
+.btn.small{padding:6px 10px;font-size:12px}
+.layout{max-width:1400px;margin:auto;padding:24px 20px;display:grid;grid-template-columns:220px minmax(0,1fr) 270px;gap:22px;align-items:start}
+.sidebar,.rightbar{position:sticky;top:94px}
+.navgroup{margin-bottom:22px}.navlabel{color:var(--muted);font-size:10px;letter-spacing:2px;font-weight:850;margin:0 0 9px 12px}
+.navitem{width:100%;display:flex;align-items:center;gap:12px;padding:12px;border:0;border-radius:11px;color:#b7bfd4;background:transparent;text-align:left;margin:3px 0;font-weight:700}
+.navitem:hover,.navitem.active{background:linear-gradient(90deg,#7b55e82d,#4f7df21a);color:white}
+.navitem.active{box-shadow:inset 3px 0 var(--purple)}
+.navicon{font-size:19px;width:24px;text-align:center}
+.sidebar-note,.sidebox{border:1px solid var(--border);background:linear-gradient(145deg,#15192a,#0e111b);border-radius:16px;padding:16px}
+.sidebar-note p,.muted{color:var(--muted);font-size:12px}
+main{min-width:0}.view{display:none}.view.active{display:block}
+.hero{position:relative;overflow:hidden;border:1px solid #44366c;border-radius:23px;padding:30px;background:linear-gradient(115deg,#231b48,#171b36 55%,#101827);margin-bottom:20px}
+.hero:after{content:"+";position:absolute;right:25px;top:-75px;font-size:300px;font-weight:950;color:#b29aff0a;pointer-events:none}
+.eyebrow{color:#c2b1ff;font-size:11px;font-weight:900;letter-spacing:2.2px}
+h1{font-size:clamp(32px,5vw,48px);line-height:1.08;letter-spacing:-1.8px;margin:12px 0}
+h1 span{background:linear-gradient(90deg,#b6a0ff,#6dc6ff);color:transparent;background-clip:text}
+h2{font-size:21px;letter-spacing:-.4px;margin:0 0 5px}
+h3{font-size:15px;margin:0 0 7px}
+p{margin:6px 0 14px}.sectionhead{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:26px 0 13px}
+.sectionhead p{font-size:12px;color:var(--muted);margin:2px 0}
+.grid2{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px}
+.grid3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.card{border:1px solid var(--border);border-radius:16px;background:linear-gradient(145deg,#151a29,#10131e);overflow:hidden;min-width:0}
+.cardbody{padding:15px}.cover{height:125px;display:grid;place-items:center;font-size:42px;background:radial-gradient(circle at 50% 20%,#6351aa,#24223f 45%,#131824);position:relative}
+.cover.c2{background:radial-gradient(circle at 50% 20%,#235f7d,#192841 48%,#131824)}
+.cover.c3{background:radial-gradient(circle at 50% 20%,#80552d,#30233b 48%,#131824)}
+.cover.c4{background:radial-gradient(circle at 50% 20%,#27594c,#1b3040 48%,#131824)}
+.tag{display:inline-block;border:1px solid #413c63;background:#27213d;color:#d1c4ff;padding:4px 8px;border-radius:7px;font-size:10px;font-weight:850}
+.pill{display:inline-flex;align-items:center;gap:5px;border-radius:999px;background:#17362f;color:#79edc2;padding:5px 9px;font-size:10px;font-weight:850}
+.feedbox{border:1px solid var(--border);background:var(--panel);border-radius:16px;padding:15px;margin-bottom:14px}
+textarea,input,select{width:100%;border:1px solid var(--border);background:#0c101b;color:var(--text);padding:11px;border-radius:10px;min-width:0}
+textarea{resize:vertical;min-height:85px}
+.formrow{display:flex;gap:9px;flex-wrap:wrap;margin-top:10px}.formrow>*{flex:1}
+.post{border:1px solid var(--border);background:var(--panel);border-radius:16px;margin-bottom:14px;overflow:hidden}
+.posthead{display:flex;gap:10px;align-items:center;padding:15px 15px 0}
+.avatar{width:39px;height:39px;display:grid;place-items:center;border-radius:13px;background:linear-gradient(135deg,#7757e8,#347dc5);font-weight:900;flex-shrink:0}
+.postbody{padding:12px 15px 5px;white-space:pre-wrap;overflow-wrap:anywhere}
+.postart{margin:10px 15px 5px;border-radius:13px;min-height:145px;display:grid;place-items:center;text-align:center;padding:18px;background:radial-gradient(ellipse at center,#373064,#171c2b 70%);font-size:35px}
+.postfoot{display:flex;gap:7px;flex-wrap:wrap;padding:10px 15px 14px}
+.statrow{display:flex;gap:10px;margin-top:17px}.stat{flex:1;border:1px solid var(--border);background:#ffffff07;border-radius:12px;padding:11px}.stat strong{display:block;font-size:19px}.stat span{font-size:10px;color:var(--muted)}
+.leader{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid var(--border)}
+.leader:last-child{border:0}.rank{color:var(--gold);font-weight:900;width:20px}.leader .avatar{width:33px;height:33px;border-radius:50%}.leaderinfo{flex:1;min-width:0}.leaderinfo strong{display:block;font-size:12px}.leaderinfo small{color:var(--muted);font-size:10px}.points{font-size:12px;font-weight:850;color:var(--green)}
+.deal{display:flex;flex-direction:column}.deal .cover{height:130px}.price{font-size:21px;font-weight:900}.oldprice{text-decoration:line-through;color:var(--muted);font-size:12px;margin-left:6px}
+.dealstore{font-size:11px;color:var(--muted);margin:6px 0 12px}
+.bracket{display:grid;grid-template-columns:repeat(3,minmax(155px,1fr));gap:13px;overflow-x:auto;padding-bottom:8px}
+.round{background:#0d111c;border:1px solid var(--border);border-radius:14px;padding:12px;min-width:0}
+.roundtitle{font-size:11px;color:#bbaaff;font-weight:900;letter-spacing:1px;margin-bottom:12px}
+.match{border:1px solid var(--border);background:var(--panel);border-radius:10px;padding:10px;margin-bottom:10px}
+.matchplayer{display:flex;justify-content:space-between;gap:5px;font-size:12px;padding:5px 0}.matchplayer.winner{color:var(--green);font-weight:850}
+.match input{padding:6px;width:42px;text-align:center}
+.match label{display:flex;justify-content:space-between;align-items:center;gap:5px}
+.matchstatus{font-size:10px;color:var(--muted);margin:5px 0}
+.empty{border:1px dashed #343b52;border-radius:14px;padding:25px;text-align:center;color:var(--muted)}
+.footer{border-top:1px solid var(--border);text-align:center;color:var(--muted);padding:24px;font-size:11px;margin-top:30px}
+.mobilebar{display:none}
+.toast{position:fixed;bottom:22px;left:50%;transform:translateX(-50%);background:#252c3e;border:1px solid #535c78;padding:12px 18px;border-radius:12px;z-index:30;box-shadow:0 8px 35px #0008;max-width:90%;text-align:center}
+@media(max-width:1100px){.layout{grid-template-columns:190px minmax(0,1fr)}.rightbar{display:none}}
+@media(max-width:700px){.topbar{height:auto;min-height:64px;padding:12px 14px;flex-wrap:wrap;gap:10px}.brand{font-size:20px}.search{order:3;width:100%}.topbar>.btn{padding:8px 10px}.layout{display:block;padding:15px 12px 85px}.sidebar{display:none}.hero{padding:22px 18px}.grid3{grid-template-columns:repeat(2,minmax(0,1fr))}.grid2{grid-template-columns:1fr}.cover{height:110px}.mobilebar{position:fixed;z-index:20;bottom:0;left:0;right:0;display:flex;justify-content:space-around;gap:3px;padding:8px 4px calc(8px + env(safe-area-inset-bottom));border-top:1px solid var(--border);background:#0b0d17f5;backdrop-filter:blur(15px)}.mobilebar button{background:transparent;border:0;color:var(--muted);font-size:10px;display:flex;flex-direction:column;align-items:center;gap:3px;min-width:0}.mobilebar button span{font-size:19px}.mobilebar button.active{color:#c4b3ff}.sectionhead{margin-top:22px}.bracket{grid-template-columns:repeat(3,190px)}}
 </style>
 </head>
-
 <body>
-<header>
-  <div class="nav">
-    <a class="logo" href="#home">GameScope<span>+</span></a>
-    <nav aria-label="Main navigation">
-      <a href="#deals">LIVE DEALS</a>
-      <a href="#library">GAMES</a>
-      <a href="#free">FREE GAMES</a>
-      <a href="#news">NEWS</a>
-      <a href="#help">HELP</a>
-    </nav>
-  </div>
+<header class="topbar">
+  <a href="#" class="brand" onclick="showView('home');return false">GameScope<span>+</span><small>PLAY · SHARE · COMPETE</small></a>
+  <input id="globalSearch" class="search" placeholder="Search games, players, deals..." aria-label="Search GameScope+" onkeydown="if(event.key==='Enter')searchAll()">
+  <button class="btn primary" onclick="showView('tournaments')">🏆 Arena</button>
 </header>
 
+<div class="layout">
+<aside class="sidebar">
+  <div class="navgroup">
+    <div class="navlabel">YOUR WORLD</div>
+    <button class="navitem active" data-view="home" onclick="showView('home')"><span class="navicon">⌂</span>Home Feed</button>
+    <button class="navitem" data-view="profile" onclick="showView('profile')"><span class="navicon">◉</span>My Profile</button>
+    <button class="navitem" data-view="games" onclick="showView('games')"><span class="navicon">🎮</span>Discover Games</button>
+  </div>
+  <div class="navgroup">
+    <div class="navlabel">COMPETE</div>
+    <button class="navitem" data-view="tournaments" onclick="showView('tournaments')"><span class="navicon">🏆</span>Tournaments</button>
+    <button class="navitem" data-view="leaderboard" onclick="showView('leaderboard')"><span class="navicon">♛</span>World Ranking</button>
+    <button class="navitem" data-view="challenges" onclick="showView('challenges')"><span class="navicon">⚔</span>Challenges</button>
+  </div>
+  <div class="navgroup">
+    <div class="navlabel">SAVE MONEY</div>
+    <button class="navitem" data-view="deals" onclick="showView('deals')"><span class="navicon">％</span>Live Deals</button>
+    <button class="navitem" data-view="free" onclick="showView('free')"><span class="navicon">🆓</span>Free Games</button>
+  </div>
+  <div class="sidebar-note">
+    <span class="tag">EARLY ACCESS</span>
+    <h3 style="margin-top:12px">Your next victory starts here.</h3>
+    <p>Share your clips. Build your team. Challenge the world.</p>
+    <button class="btn small" onclick="showView('tournaments')">Explore Arena ↗</button>
+  </div>
+</aside>
+
 <main>
-  <section class="hero" id="home">
-    <div class="eyebrow">YOUR PC GAMING DASHBOARD</div>
-    <h1>Play smarter.<br><span>Spend less.</span></h1>
-    <p>Discover PC games, compare live offers from supported stores, find free-to-play titles and keep up with gaming news.</p>
-    <div class="hero-actions">
-      <a class="btn primary" href="#deals">EXPLORE LIVE DEALS ↗</a>
-      <a class="btn" href="#library">DISCOVER GAMES</a>
+<section class="view active" id="view-home">
+  <div class="hero">
+    <div class="eyebrow">THE GAMER COMMUNITY</div>
+    <h1>Play your game.<br><span>Make your name.</span></h1>
+    <p style="color:#c1c5dd;max-width:510px">Share your best moments, challenge your friends, build tournaments and climb the leaderboard. PC and mobile gaming, together.</p>
+    <div class="formrow">
+      <button class="btn primary" onclick="document.getElementById('composer').scrollIntoView({behavior:'smooth'})">＋ Share a moment</button>
+      <button class="btn" onclick="showView('tournaments')">🏆 Create a tournament</button>
     </div>
-  </section>
-
-  <section id="deals">
-    <div class="live-panel">
-      <div class="live-top">
-        <div>
-          <div class="live-tag">● DEAL HUNTER LIVE</div>
-          <h2 style="margin-top:7px">Today's PC Deals</h2>
-          <div class="status" id="apiStatus">Connecting to live deal data…</div>
-        </div>
-        <button class="btn" id="refreshDeals">↻ Refresh deals</button>
-      </div>
-      <div class="toolbar">
-        <input id="homeSearch" class="field search" type="search" placeholder="Search a game..." aria-label="Search live deals">
-        <a class="btn" href="#allDeals">All deals →</a>
-      </div>
-      <div id="homeDeals" class="grid">
-        <div class="loading">Loading live offers…</div>
-      </div>
-      <div class="note">Live data from CheapShark. Prices are in USD and availability can vary by region.</div>
-      <div id="dealError" class="error" role="status"></div>
+    <div class="statrow">
+      <div class="stat"><strong>PC + Mobile</strong><span>ONE COMMUNITY</span></div>
+      <div class="stat"><strong>Play fair</strong><span>RESPECT EVERY PLAYER</span></div>
+      <div class="stat"><strong>Global</strong><span>YOUR NEXT CHALLENGE</span></div>
     </div>
+  </div>
 
-    <div class="quick-grid">
-      <a class="quick" href="#library"><div class="quick-icon">🎮</div><h3>Game Library</h3><p>Discover games</p></a>
-      <a class="quick" href="#free"><div class="quick-icon">🆓</div><h3>Free Games</h3><p>Play for free</p></a>
-      <a class="quick" href="#news"><div class="quick-icon">📰</div><h3>Gaming News</h3><p>Latest headlines</p></a>
-      <a class="quick" href="#help"><div class="quick-icon">🛠️</div><h3>Help & Fixes</h3><p>PC support</p></a>
+  <div class="sectionhead"><div><h2>Community Feed</h2><p>Moments, victories and gaming talk.</p></div><span class="tag">SOCIAL ARENA</span></div>
+  <div class="feedbox" id="composer">
+    <div style="display:flex;gap:10px;align-items:center;margin-bottom:12px">
+      <div class="avatar">G</div><strong>Share something with gamers</strong>
     </div>
-
-    <section id="allDeals">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">LIVE STORE OFFERS</div>
-          <h2>Deal Hunter</h2>
-          <p>Find a game, sort offers, or compare prices between stores.</p>
-        </div>
-        <button class="btn" id="refreshDeals2">↻ Refresh</button>
-      </div>
-      <div class="toolbar">
-        <input id="dealSearch" class="field search" type="search" placeholder="Search deals by game name..." aria-label="Search all deals">
-        <select id="dealSort" class="field" aria-label="Sort deals">
-          <option value="rating">Best deal rating</option>
-          <option value="discount">Biggest discount</option>
-          <option value="price">Lowest price</option>
-          <option value="title">Game name A–Z</option>
-        </select>
-      </div>
-      <div class="toolbar">
-        <button class="btn primary" id="allDealsTab">All Deals</button>
-        <button class="btn" id="freeDealsTab">Free / $0</button>
-        <button class="btn" id="wishlistTab">My Wishlist ♥</button>
-      </div>
-      <div class="status" id="dealCount">Waiting for offers…</div>
-      <div id="dealGrid" class="grid" style="margin-top:14px">
-        <div class="loading">Loading…</div>
-      </div>
-      <p class="note">Click Compare Prices to see available offers for the same game. Not every retailer or region is covered.</p>
-    </section>
-  </section>
-
-  <section id="library">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">DISCOVER YOUR NEXT GAME</div>
-        <h2>Game Library</h2>
-        <p>Explore a selection of popular PC games.</p>
-      </div>
-    </div>
-    <div class="toolbar">
-      <input id="librarySearch" class="field search" type="search" placeholder="Search games..." aria-label="Search game library">
-      <select id="genreFilter" class="field" aria-label="Filter by genre">
-        <option value="All">All genres</option>
-        <option value="Action">Action</option>
-        <option value="RPG">RPG</option>
-        <option value="Battle Royale">Battle Royale</option>
-        <option value="Racing">Racing</option>
-        <option value="FPS">FPS</option>
+    <textarea id="postText" maxlength="1200" placeholder="Your best goal? A clutch win? A tip for the community?"></textarea>
+    <div class="formrow">
+      <select id="postGame" aria-label="Choose a game">
+        <option>General Gaming</option><option>eFootball Mobile</option><option>Free Fire</option><option>PUBG Mobile</option><option>Mobile Legends</option><option>Call of Duty Mobile</option><option>Fortnite</option><option>GTA V</option><option>PC Gaming</option>
       </select>
+      <select id="postType" aria-label="Post type"><option value="text">💬 Discussion</option><option value="clip">🎬 Gameplay Clip</option><option value="win">🏆 Victory</option><option value="tip">💡 Gaming Tip</option></select>
+      <button class="btn primary" onclick="createPost()">Publish post ↗</button>
     </div>
-    <div id="libraryGrid" class="library-grid"></div>
-  </section>
+    <p class="muted" style="margin:10px 0 0">Demo mode: text posts are saved in this browser. Video upload and shared accounts need a server.</p>
+  </div>
+  <div id="feed"></div>
+  <button class="btn" style="width:100%" onclick="showView('profile')">View my profile →</button>
+</section>
 
-  <section id="free">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">NO PURCHASE REQUIRED</div>
-        <h2>Free Games</h2>
-        <p>Free-to-play games. Optional in-game purchases may apply.</p>
-      </div>
+<section class="view" id="view-profile">
+  <div class="hero">
+    <div class="avatar" style="width:68px;height:68px;font-size:27px">G</div>
+    <div class="eyebrow" style="margin-top:16px">GAMER PROFILE</div>
+    <h1 id="profileName">Your Gamer Card</h1>
+    <p>Set your identity, share your gaming story and track your progress.</p>
+    <div class="formrow">
+      <input id="nameInput" maxlength="28" placeholder="Your gamer nickname">
+      <button class="btn primary" onclick="saveProfile()">Save profile</button>
     </div>
-    <div id="freeGrid" class="library-grid"></div>
-  </section>
+    <div class="statrow">
+      <div class="stat"><strong id="postCount">0</strong><span>MY POSTS</span></div>
+      <div class="stat"><strong id="tournamentCount">0</strong><span>MY TOURNAMENTS</span></div>
+      <div class="stat"><strong>Rookie</strong><span>DEMO RANK</span></div>
+    </div>
+  </div>
+  <div class="sectionhead"><div><h2>My posts</h2><p>Your recent community activity on this device.</p></div></div>
+  <div id="myPosts"></div>
+</section>
 
-  <section id="news">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">STAY UP TO DATE</div>
-        <h2>Gaming News</h2>
-        <p>Headlines from gaming publications.</p>
-      </div>
-      <button class="btn" id="refreshNews">↻ Refresh news</button>
+<section class="view" id="view-tournaments">
+  <div class="hero">
+    <div class="eyebrow">GAMESCOPE+ ARENA</div>
+    <h1>Make it a <span>tournament.</span></h1>
+    <p style="color:#c1c5dd">Build a cup for your friends. Generate matchups, enter scores and advance winners through your bracket.</p>
+  </div>
+  <div class="sectionhead"><div><h2>Create your own cup</h2><p>Choose a game and add 2–16 players.</p></div><span class="tag">BRACKET BUILDER</span></div>
+  <div class="feedbox">
+    <div class="formrow">
+      <input id="cupName" maxlength="55" placeholder="Tournament name e.g. Friday Night Cup">
+      <select id="cupGame"><option>eFootball Mobile</option><option>Free Fire</option><option>PUBG Mobile</option><option>Mobile Legends</option><option>Call of Duty Mobile</option><option>Brawl Stars</option><option>EA SPORTS FC</option><option>Rocket League</option><option>Other game</option></select>
     </div>
-    <div class="status" id="newsStatus">Loading headlines…</div>
-    <div id="newsGrid" class="news-list" style="margin-top:14px">
-      <div class="loading">Loading gaming news…</div>
+    <div class="formrow">
+      <select id="cupFormat"><option value="single">Single elimination</option><option value="league">League / round robin (planning demo)</option></select>
+      <textarea id="cupPlayers" rows="3" placeholder="Player names, one per line&#10;Omar&#10;Yassine&#10;Adam&#10;Hamza"></textarea>
     </div>
-    <p class="note">News and article links belong to their original publishers. Feeds may be temporarily unavailable.</p>
-  </section>
+    <button class="btn primary" onclick="createCup()">⚡ Generate tournament</button>
+    <p class="muted">For single elimination, use 2, 4, 8 or 16 players for a clean bracket. Other sizes receive preliminary byes in this demo.</p>
+  </div>
+  <div class="sectionhead"><div><h2>Your tournaments</h2><p>Saved on this device in demo mode.</p></div><button class="btn small" onclick="renderCups()">↻ Refresh</button></div>
+  <div id="cups"></div>
+</section>
 
-  <section id="help">
-    <div class="section-head">
-      <div>
-        <div class="eyebrow">NEED A FIX?</div>
-        <h2>Help & Fixes</h2>
-        <p>Official resources for common PC gaming problems.</p>
-      </div>
-    </div>
-    <div class="help-grid">
-      <div class="help-item"><h3>Steam Support</h3><p>Games, purchases, downloads and account issues.</p><a href="https://help.steampowered.com/" target="_blank" rel="noopener noreferrer">Open support ↗</a></div>
-      <div class="help-item"><h3>NVIDIA Drivers</h3><p>Find official graphics drivers for your PC.</p><a href="https://www.nvidia.com/Download/index.aspx" target="_blank" rel="noopener noreferrer">Find drivers ↗</a></div>
-      <div class="help-item"><h3>Windows Help</h3><p>Windows updates, security and compatibility.</p><a href="https://support.microsoft.com/windows" target="_blank" rel="noopener noreferrer">Get help ↗</a></div>
-      <div class="help-item"><h3>Epic Games Support</h3><p>Launcher, game and account assistance.</p><a href="https://www.epicgames.com/help/" target="_blank" rel="noopener noreferrer">Open support ↗</a></div>
-    </div>
-  </section>
+<section class="view" id="view-leaderboard">
+  <div class="hero">
+    <div class="eyebrow">CLIMB THE RANKS</div><h1>World <span>Ranking.</span></h1>
+    <p style="color:#c1c5dd">A preview of the ranking system. Real global rankings will require verified results and shared accounts.</p>
+  </div>
+  <div class="feedbox">
+    <div class="sectionhead" style="margin-top:0"><h2>🏆 Demo leaderboard</h2><span class="tag">SAMPLE DATA</span></div>
+    <div id="leaderboard"></div>
+  </div>
+  <div class="feedbox"><h3>How to earn points</h3><p class="muted">Complete tournaments, submit results, finish matches and play fair. Likes and followers alone should not determine competitive rank.</p></div>
+</section>
+
+<section class="view" id="view-challenges">
+  <div class="hero"><div class="eyebrow">FRIENDLY RIVALRY</div><h1>Challenge <span>accepted?</span></h1><p style="color:#c1c5dd">Set up a friendly match and share the invitation with your gaming group.</p></div>
+  <div class="feedbox">
+    <h2>New challenge</h2>
+    <div class="formrow"><input id="challengeFrom" placeholder="Your nickname"><input id="challengeTo" placeholder="Friend's nickname"></div>
+    <div class="formrow"><select id="challengeGame"><option>eFootball Mobile</option><option>Free Fire</option><option>PUBG Mobile</option><option>Mobile Legends</option><option>Call of Duty Mobile</option><option>Other game</option></select><select id="challengeMode"><option>1 vs 1</option><option>2 vs 2</option><option>Squad</option><option>Best of 3</option></select></div>
+    <button class="btn primary" onclick="createChallenge()">Create challenge</button>
+  </div>
+  <div class="sectionhead"><div><h2>My challenges</h2><p>Local demo invitations.</p></div></div>
+  <div id="challengeList"></div>
+</section>
+
+<section class="view" id="view-games">
+  <div class="hero"><div class="eyebrow">DISCOVER YOUR NEXT GAME</div><h1>Find your <span>next obsession.</span></h1><p style="color:#c1c5dd">Explore games and jump into their community.</p></div>
+  <div class="grid3" id="gameCatalog"></div>
+</section>
+
+<section class="view" id="view-deals">
+  <div class="hero"><div class="eyebrow">SMARTER SHOPPING</div><h1>Find a <span>real deal.</span></h1><p style="color:#c1c5dd">Current PC offers from CheapShark. Prices and availability can change.</p><button class="btn primary" onclick="loadDeals()">↻ Refresh live deals</button></div>
+  <div class="formrow"><input id="dealSearch" placeholder="Search deals by game..." oninput="renderDeals()"><select id="dealFilter" onchange="renderDeals()"><option value="all">All offers</option><option value="free">Free / $0</option><option value="50">50% off or more</option><option value="75">75% off or more</option></select><select id="dealSort" onchange="renderDeals()"><option value="discount">Biggest discount</option><option value="price">Lowest price</option><option value="name">Name A–Z</option></select></div>
+  <p class="muted" id="dealStatus">Loading deals...</p>
+  <div class="grid3" id="dealGrid"></div>
+</section>
+
+<section class="view" id="view-free">
+  <div class="hero"><div class="eyebrow">NO PURCHASE REQUIRED</div><h1>Play more.<br><span>Spend zero.</span></h1><p style="color:#c1c5dd">Explore free-to-play games. Store availability depends on platform and region.</p></div>
+  <div class="grid3" id="freeCatalog"></div>
+</section>
 </main>
 
-<footer>
-  <div class="footer-inner">
-    <div><strong>GameScope+</strong> — Independent gaming discovery website.</div>
-    <div>Not affiliated with game publishers or stores. Deal data provided by CheapShark.</div>
-    <div>© <span id="year"></span> GameScope+</div>
+<aside class="rightbar">
+  <div class="sidebox">
+    <div class="sectionhead" style="margin-top:0"><div><h3>🏆 Arena Spotlight</h3><p>Compete with your crew</p></div></div>
+    <div class="cover" style="height:95px;border-radius:11px">🏆</div>
+    <h3 style="margin-top:12px">Create a weekend cup</h3>
+    <p class="muted">Bring your friends together and settle the score.</p>
+    <button class="btn primary" style="width:100%" onclick="showView('tournaments')">Build a cup</button>
   </div>
-</footer>
-
-<div class="modal-backdrop" id="compareModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal">
-    <div class="modal-head">
-      <div>
-        <div class="eyebrow">STORE COMPARISON</div>
-        <h2 id="modalTitle">Compare prices</h2>
-        <p class="small" id="modalSubtitle">Offers currently available in the feed.</p>
-      </div>
-      <button class="btn" id="closeModal" aria-label="Close comparison">✕ Close</button>
-    </div>
-    <hr>
-    <div id="compareResults"></div>
-    <p class="note">Prices and stock can change. Check the retailer's final price and regional availability before purchasing.</p>
+  <div class="sidebox" style="margin-top:14px">
+    <div class="sectionhead" style="margin-top:0"><div><h3>♛ Top Players</h3><p>Sample leaderboard</p></div></div>
+    <div id="sideLeaders"></div>
+    <button class="btn small" style="width:100%;margin-top:12px" onclick="showView('leaderboard')">Full ranking →</button>
   </div>
+  <div class="sidebox" style="margin-top:14px"><h3>🛡️ Play fair</h3><p class="muted">Never share passwords. Verify match results, respect other players and report suspicious activity.</p></div>
+</aside>
 </div>
 
+<nav class="mobilebar">
+  <button class="active" data-view="home" onclick="showView('home')"><span>⌂</span>Feed</button>
+  <button data-view="games" onclick="showView('games')"><span>🎮</span>Games</button>
+  <button data-view="tournaments" onclick="showView('tournaments')"><span>🏆</span>Arena</button>
+  <button data-view="deals" onclick="showView('deals')"><span>％</span>Deals</button>
+  <button data-view="profile" onclick="showView('profile')"><span>◉</span>Profile</button>
+</nav>
+<div class="footer">© 2026 GameScope+ · Independent gaming community prototype.<br>Not affiliated with game publishers or stores. Live deals powered by CheapShark.</div>
+<div id="toast" class="toast" hidden></div>
+
 <script>
-"use strict";
-
-const API = "https://www.cheapshark.com/api/1.0";
-const NEWS_FEEDS = [
-  "https://www.pcgamer.com/rss/",
-  "https://feeds.ign.com/ign/all"
+const $=id=>document.getElementById(id);
+const safe=(s='')=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function read(key,fallback){try{const v=JSON.parse(localStorage.getItem('gsplus_'+key));return v===null?fallback:v}catch{return fallback}}
+function write(key,value){try{localStorage.setItem('gsplus_'+key,JSON.stringify(value));return true}catch{toast('Browser storage is unavailable.');return false}}
+function toast(msg){const el=$('toast');el.textContent=msg;el.hidden=false;clearTimeout(window.toastTimer);window.toastTimer=setTimeout(()=>el.hidden=true,2600)}
+let profile=read('profile',{name:'Gamer'});
+let posts=read('posts',[
+{id:1,name:'Arena Insider',game:'Community Update',type:'tip',text:'Welcome to GameScope+ Arena! Share your best gaming moments, set up a cup with friends and track your tournament results. This is a demo community — your next move starts here. 🎮',likes:12,time:'Featured'},
+{id:2,name:'Mobile Rival',game:'eFootball Mobile',type:'win',text:'Who is ready for a friendly eFootball tournament this weekend? Drop your nickname and let’s build the bracket! 🏆',likes:8,time:'Featured'}
+]);
+let cups=read('cups',[]),challenges=read('challenges',[]),deals=[],stores={};
+const games=[
+{name:'eFootball Mobile',platform:'Mobile',genre:'Football',emoji:'⚽',desc:'Build your squad and compete on the pitch.',c:1},
+{name:'Free Fire',platform:'Mobile',genre:'Battle Royale',emoji:'🔥',desc:'Fast battle royale matches with your squad.',c:2},
+{name:'PUBG Mobile',platform:'Mobile',genre:'Battle Royale',emoji:'🎯',desc:'Survive, loot and become the last squad.',c:3},
+{name:'Mobile Legends',platform:'Mobile',genre:'MOBA',emoji:'🛡️',desc:'Team up for fast 5v5 battles.',c:4},
+{name:'Call of Duty Mobile',platform:'Mobile',genre:'FPS',emoji:'💥',desc:'Multiplayer firefights and battle royale.',c:2},
+{name:'Brawl Stars',platform:'Mobile',genre:'Action',emoji:'⭐',desc:'Quick competitive battles with friends.',c:1},
+{name:'Fortnite',platform:'PC + Console',genre:'Battle Royale',emoji:'🪂',desc:'Build, survive and create memorable plays.',c:3},
+{name:'GTA V',platform:'PC',genre:'Open World',emoji:'🚘',desc:'Explore Los Santos and create your own story.',c:4},
+{name:'Warframe',platform:'PC',genre:'Action',emoji:'🚀',desc:'Free sci-fi action with co-op missions.',c:2}
 ];
-
-const $ = id => document.getElementById(id);
-const money = value => "$" + Number(value || 0).toFixed(2);
-const escapeHTML = value => String(value ?? "").replace(/[&<>"']/g, c => ({
-  "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
-}[c]));
-const safeURL = value => {
-  try {
-    const url = new URL(value);
-    return ["https:","http:"].includes(url.protocol) ? url.href : "#";
-  } catch { return "#"; }
-};
-const normalTitle = value => String(value || "")
-  .toLowerCase()
-  .replace(/\b(digital deluxe|deluxe edition|ultimate edition|digital edition|standard edition|goty edition)\b/g," ")
-  .replace(/[^a-z0-9]+/g," ")
-  .trim();
-
-let allOffers = [];
-let stores = {};
-let visibleDeals = [];
-let dealMode = "all";
-let wishlist = new Set();
-let loadingDeals = false;
-
-try {
-  const saved = JSON.parse(localStorage.getItem("gamescope-wishlist") || "[]");
-  if (Array.isArray(saved)) wishlist = new Set(saved.map(String));
-} catch {}
-
-const games = [
-  {title:"Grand Theft Auto V",genre:"Action",desc:"Explore Los Santos in an open-world action game.",icon:"🚘",url:"https://store.steampowered.com/app/271590/"},
-  {title:"Cyberpunk 2077",genre:"RPG",desc:"An open-world RPG set in Night City.",icon:"🌆",url:"https://store.steampowered.com/app/1091500/"},
-  {title:"Elden Ring",genre:"RPG",desc:"Explore a fantasy world and face formidable enemies.",icon:"⚔️",url:"https://store.steampowered.com/app/1245620/"},
-  {title:"PUBG: Battlegrounds",genre:"Battle Royale",desc:"Compete to be the last player or squad standing.",icon:"🎯",url:"https://store.steampowered.com/app/578080/"},
-  {title:"Apex Legends",genre:"Battle Royale",desc:"A free-to-play hero shooter with squad-based combat.",icon:"🛡️",url:"https://store.steampowered.com/app/1172470/"},
-  {title:"Forza Horizon 5",genre:"Racing",desc:"Race across an open-world version of Mexico.",icon:"🏎️",url:"https://store.steampowered.com/app/1551360/"},
-  {title:"Team Fortress 2",genre:"FPS",desc:"A classic team-based multiplayer shooter.",icon:"🔫",url:"https://store.steampowered.com/app/440/"},
-  {title:"Warframe",genre:"Action",desc:"A free online action game with fast-paced combat.",icon:"🤖",url:"https://store.steampowered.com/app/230410/"}
-];
-
-const freeGames = [
-  {title:"Counter-Strike 2",genre:"FPS",desc:"Competitive tactical multiplayer shooter.",icon:"🎯",url:"https://store.steampowered.com/app/730/"},
-  {title:"Warframe",genre:"Action",desc:"Fast-paced cooperative sci-fi action.",icon:"🤖",url:"https://store.steampowered.com/app/230410/"},
-  {title:"PUBG: Battlegrounds",genre:"Battle Royale",desc:"Drop in and compete for survival.",icon:"🪂",url:"https://store.steampowered.com/app/578080/"},
-  {title:"Team Fortress 2",genre:"FPS",desc:"Team-based multiplayer action.",icon:"🔫",url:"https://store.steampowered.com/app/440/"},
-  {title:"Dota 2",genre:"Strategy",desc:"A competitive team-based strategy game.",icon:"🧙",url:"https://store.steampowered.com/app/570/"},
-  {title:"Path of Exile",genre:"RPG",desc:"A free-to-play online action RPG.",icon:"💎",url:"https://store.steampowered.com/app/238960/"},
-  {title:"The Sims 4",genre:"Simulation",desc:"Create characters and build your own stories.",icon:"🏡",url:"https://store.steampowered.com/app/1222670/"},
-  {title:"Brawlhalla",genre:"Fighting",desc:"Free-to-play platform fighting action.",icon:"🥊",url:"https://store.steampowered.com/app/291550/"}
-];
-
-function saveWishlist(){
-  try { localStorage.setItem("gamescope-wishlist",JSON.stringify([...wishlist])); } catch {}
+function showView(name){
+document.querySelectorAll('.view').forEach(v=>v.classList.toggle('active',v.id==='view-'+name));
+document.querySelectorAll('[data-view]').forEach(b=>b.classList.toggle('active',b.dataset.view===name));
+window.scrollTo({top:0,behavior:'smooth'});
+if(name==='profile')renderProfile();
+if(name==='tournaments')renderCups();
+if(name==='leaderboard')renderLeaders();
+if(name==='challenges')renderChallenges();
+if(name==='games')renderGames();
+if(name==='free')renderFree();
+if(name==='deals'&&!deals.length)loadDeals();
 }
-
-function storeName(id){
-  const store = stores[String(id)];
-  return store?.name || "Supported store";
+function searchAll(){
+const q=$('globalSearch').value.trim();
+if(!q)return;
+$('dealSearch').value=q;showView('deals');renderDeals();
+if(!deals.length)loadDeals();
 }
-
-function storeLogo(id){
-  const store = stores[String(id)];
-  if(!store?.images?.logo) return "";
-  return "https://www.cheapshark.com" + store.images.logo;
+function saveProfile(){
+const n=$('nameInput').value.trim().slice(0,28);
+if(!n){toast('Enter a nickname first.');return}
+profile.name=n;write('profile',profile);renderProfile();renderFeed();toast('Profile saved on this device.');
 }
-
-function discountPercent(deal){
-  const sale = Number(deal.salePrice);
-  const normal = Number(deal.normalPrice);
-  if(!normal || normal <= 0 || !Number.isFinite(sale)) return 0;
-  return Math.max(0,Math.round((1-sale/normal)*100));
+function createPost(){
+const text=$('postText').value.trim();if(!text){toast('Write something before publishing.');return}
+posts.unshift({id:Date.now(),name:profile.name||'Gamer',game:$('postGame').value,type:$('postType').value,text,likes:0,time:'Just now'});
+if(write('posts',posts)){$('postText').value='';renderFeed();renderProfile();toast('Your demo post is published!')}
 }
-
-function isFree(deal){
-  return Number(deal.salePrice) === 0;
+function likePost(id){
+posts=posts.map(p=>p.id===id?{...p,likes:(p.likes||0)+1}:p);write('posts',posts);renderFeed();renderProfile();
 }
-
-function dealURL(deal){
-  if(deal.dealID){
-    return "https://www.cheapshark.com/redirect?dealID=" + encodeURIComponent(deal.dealID);
-  }
-  return "https://www.cheapshark.com/";
+function deletePost(id){
+if(!confirm('Delete this post from this browser?'))return;
+posts=posts.filter(p=>p.id!==id);write('posts',posts);renderFeed();renderProfile();
 }
-
-function thumbURL(deal){
-  return safeURL(deal.thumb || "");
+function postMarkup(p,own=false){
+const icon=p.type==='win'?'🏆':p.type==='clip'?'🎬':p.type==='tip'?'💡':'🎮';
+return `<article class="post"><div class="posthead"><div class="avatar">${safe((p.name||'G').slice(0,1).toUpperCase())}</div><div style="flex:1;min-width:0"><strong>${safe(p.name)}</strong><div class="muted">${safe(p.game)} · ${safe(p.time||'Recently')}</div></div>${own?'<span class="tag">YOU</span>':''}</div><div class="postbody">${safe(p.text)}</div>${p.type!=='text'?`<div class="postart">${icon}<div style="font-size:13px;font-weight:800">${safe(p.type==='win'?'VICTORY MOMENT':p.type==='clip'?'GAMEPLAY CLIP':'GAMING TIP')}<div class="muted">${safe(p.game)}</div></div></div>`:''}<div class="postfoot"><button class="btn small" onclick="likePost(${p.id})">♥ ${p.likes||0} Like</button><button class="btn small" onclick="sharePost(${p.id})">↗ Share</button>${own?`<button class="btn small" onclick="deletePost(${p.id})">Delete</button>`:''}</div></article>`;
 }
-
-function imageMarkup(src,title,kind="cover"){
-  if(src){
-    return `<img loading="lazy" src="${escapeHTML(src)}" alt="${escapeHTML(title)} cover" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
-      <span class="cover-fallback" style="display:none">${escapeHTML(title.slice(0,1).toUpperCase())}</span>`;
-  }
-  return `<span class="cover-fallback">${escapeHTML(title.slice(0,1).toUpperCase())}</span>`;
+function sharePost(id){
+const p=posts.find(x=>x.id===id);if(!p)return;
+const text=`${p.name} on GameScope+ · ${p.game}\n${p.text}`;
+if(navigator.share){navigator.share({title:'GameScope+ post',text}).catch(()=>{})}
+else if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(text).then(()=>toast('Post text copied.')).catch(()=>toast(text))}
+else toast(text);
 }
-
-function offerCard(deal){
-  const key = String(deal.dealID || deal.gameID || deal.title);
-  const discount = discountPercent(deal);
-  const free = isFree(deal);
-  const saved = wishlist.has(key);
-  const image = thumbURL(deal);
-  return `
-    <article class="card">
-      <div class="cover">
-        ${imageMarkup(image,deal.title)}
-        <span class="discount">${free ? "FREE / $0" : discount + "% OFF"}</span>
-      </div>
-      <div class="card-body">
-        <div class="card-title">${escapeHTML(deal.title)}</div>
-        <div class="store">
-          ${escapeHTML(storeName(deal.storeID))}
-          ${storeLogo(deal.storeID) ? " · Official store listing" : ""}
-        </div>
-        <div class="price-row">
-          <span class="price">${money(deal.salePrice)}</span>
-          ${Number(deal.normalPrice) > 0 ? `<span class="old-price">${money(deal.normalPrice)}</span>` : ""}
-        </div>
-        <div class="small">${discount ? discount + "% below listed normal price" : free ? "Free offer" : "Current listed offer"}</div>
-        <div class="card-actions">
-          <a class="btn primary" href="${escapeHTML(dealURL(deal))}" target="_blank" rel="noopener noreferrer">View deal ↗</a>
-          <button class="btn" onclick="compareGame('${escapeHTML(String(deal.gameID || ""))}','${escapeHTML(deal.title).replace(/&#39;/g,"\\'")}')">Compare</button>
-          <button class="btn heart ${saved?"saved":""}" aria-label="Toggle wishlist" title="Wishlist" onclick="toggleWishlist('${escapeHTML(key)}')" >${saved?"♥":"♡"}</button>
-        </div>
-      </div>
-    </article>`;
+function renderFeed(){
+$('feed').innerHTML=posts.length?posts.map(p=>postMarkup(p,p.name===profile.name)).join(''):'<div class="empty">No posts yet. Be the first to share a gaming moment.</div>';
 }
-
-function dedupeBestOffers(offers){
-  const best = new Map();
-  for(const deal of offers){
-    const key = normalTitle(deal.title) || String(deal.gameID);
-    const current = best.get(key);
-    if(!current || Number(deal.salePrice) < Number(current.salePrice)){
-      best.set(key,deal);
-    }
-  }
-  return [...best.values()];
+function renderProfile(){
+$('profileName').textContent=profile.name||'Your Gamer Card';$('nameInput').value=profile.name||'';
+const mine=posts.filter(p=>p.name===profile.name);
+$('postCount').textContent=mine.length;$('tournamentCount').textContent=cups.length;
+$('myPosts').innerHTML=mine.length?mine.map(p=>postMarkup(p,true)).join(''):'<div class="empty">Your posts will appear here.</div>';
 }
-
-function toggleWishlist(key){
-  if(wishlist.has(key)) wishlist.delete(key);
-  else wishlist.add(key);
-  saveWishlist();
-  renderHomeDeals();
-  renderDeals();
-  renderLibrary();
-  renderFreeGames();
+function createCup(){
+const name=$('cupName').value.trim()||`${$('cupGame').value} Cup`;
+const players=$('cupPlayers').value.split(/\n|,/).map(s=>s.trim()).filter(Boolean);
+const unique=[...new Set(players)];
+if(unique.length<2||unique.length>16){toast('Add between 2 and 16 unique player names.');return}
+if($('cupFormat').value==='league'){toast('League format is planned for the next version. Choose single elimination for this demo.');return}
+const shuffled=[...unique].sort(()=>Math.random()-.5);
+const cup={id:Date.now(),name,game:$('cupGame').value,players:shuffled,created:new Date().toLocaleDateString(),rounds:makeRounds(shuffled)};
+cups.unshift(cup);
+if(write('cups',cups)){$('cupName').value='';$('cupPlayers').value='';renderCups();renderProfile();toast('Tournament created! Share the bracket with your friends.')}
 }
-
-function renderHomeDeals(){
-  const search = $("homeSearch").value.trim().toLowerCase();
-  let offers = dedupeBestOffers(allOffers);
-  if(search) offers = offers.filter(d => d.title.toLowerCase().includes(search));
-  offers.sort((a,b) => Number(b.savings || 0)-Number(a.savings || 0));
-  const shown = offers.slice(0,4);
-  $("homeDeals").innerHTML = shown.length
-    ? shown.map(offerCard).join("")
-    : `<div class="empty">${allOffers.length ? "No matching games. Try another search." : "Live offers are not available yet. Please refresh."}</div>`;
+function makeRounds(players){
+let arr=players.map((name,i)=>({name,score:'',winner:false,seed:i+1}));
+const size=2**Math.ceil(Math.log2(arr.length));
+while(arr.length<size)arr.push({name:'BYE',score:'',winner:false,bye:true});
+const rounds=[];
+while(arr.length>1){
+const matches=[];
+for(let i=0;i<arr.length;i+=2){
+let a=arr[i],b=arr[i+1];
+matches.push({a:a.name,b:b.name,sa:'',sb:'',winner:a.bye?b.bye?'':'b':b.bye?'a':'',status:a.bye||b.bye?'Bye advances':'Awaiting result'});
 }
-
-function renderDeals(){
-  const query = $("dealSearch").value.trim().toLowerCase();
-  const sort = $("dealSort").value;
-  let offers = [...allOffers];
-
-  if(dealMode === "free") offers = offers.filter(isFree);
-  if(dealMode === "wishlist"){
-    offers = offers.filter(d => wishlist.has(String(d.dealID || d.gameID || d.title)));
-  }
-  if(query) offers = offers.filter(d => d.title.toLowerCase().includes(query));
-
-  if(sort === "price") offers.sort((a,b) => Number(a.salePrice)-Number(b.salePrice));
-  else if(sort === "discount") offers.sort((a,b) => discountPercent(b)-discountPercent(a));
-  else if(sort === "title") offers.sort((a,b) => a.title.localeCompare(b.title));
-  else offers.sort((a,b) => Number(b.dealRating || 0)-Number(a.dealRating || 0));
-
-  visibleDeals = offers;
-  $("dealCount").textContent = `${offers.length} offers shown · ${allOffers.length} loaded.`;
-  const uniqueOffers = dedupeBestOffers(offers);
-  $("dealGrid").innerHTML = uniqueOffers.length
-    ? uniqueOffers.map(offerCard).join("")
-    : `<div class="empty">${allOffers.length ? "No offers match this filter." : "No deal data available."}</div>`;
-
-  $("allDealsTab").classList.toggle("primary",dealMode==="all");
-  $("freeDealsTab").classList.toggle("primary",dealMode==="free");
-  $("wishlistTab").classList.toggle("primary",dealMode==="wishlist");
+rounds.push(matches);arr=Array.from({length:matches.length},()=>({name:'TBD'}));
 }
-
-async function fetchJSON(url){
-  const response = await fetch(url);
-  if(!response.ok) throw new Error("Request failed (" + response.status + ")");
-  return response.json();
+return rounds;
 }
-
+function scoreMatch(cupId,r,m){
+const cup=cups.find(c=>c.id===cupId);if(!cup)return;
+const match=cup.rounds[r][m],sa=Number($(`s-${cupId}-${r}-${m}-a`).value),sb=Number($(`s-${cupId}-${r}-${m}-b`).value);
+if(match.a==='TBD'||match.b==='TBD'||match.a==='BYE'||match.b==='BYE'){toast('This match is not ready yet.');return}
+if(!Number.isFinite(sa)||!Number.isFinite(sb)||sa<0||sb<0||sa===sb){toast('Enter valid scores. A tie needs a replay or tie-break.');return}
+match.sa=sa;match.sb=sb;match.winner=sa>sb?'a':'b';match.status='Result entered (demo)';
+advanceRounds(cup);write('cups',cups);renderCups();toast('Result saved in this browser.');
+}
+function advanceRounds(cup){
+for(let r=0;r<cup.rounds.length;r++){
+const matches=cup.rounds[r];
+for(let m=0;m<matches.length;m++){
+const x=matches[m];
+if(x.a==='BYE'&&x.b!=='BYE'){x.winner='b';x.status='Bye advances'}
+if(x.b==='BYE'&&x.a!=='BYE'){x.winner='a';x.status='Bye advances'}
+if(x.winner&&r+1<cup.rounds.length){
+const next=cup.rounds[r+1][Math.floor(m/2)];
+if(next){const player=x.winner==='a'?x.a:x.b;if(m%2===0)next.a=player;else next.b=player;}
+}
+}
+}
+}
+function renderCups(){
+$('cups').innerHTML=cups.length?cups.map(c=>{
+advanceRounds(c);
+const rounds=c.rounds.map((matches,r)=>`<div class="round"><div class="roundtitle">${r===c.rounds.length-1?'FINAL':r===c.rounds.length-2?'SEMI-FINAL':r===0?'ROUND 1':`ROUND ${r+1}`}</div>${matches.map((m,i)=>{
+const ready=m.a!=='TBD'&&m.b!=='TBD'&&m.a!=='BYE'&&m.b!=='BYE';
+return `<div class="match"><div class="matchplayer ${m.winner==='a'?'winner':''}"><span>${safe(m.a)}</span><strong>${m.sa===''?'–':m.sa}</strong></div><div class="matchplayer ${m.winner==='b'?'winner':''}"><span>${safe(m.b)}</span><strong>${m.sb===''?'–':m.sb}</strong></div><div class="matchstatus">${safe(m.status||'Awaiting result')}</div>${ready?`<div style="display:flex;gap:5px;align-items:center;margin-top:7px"><label style="font-size:10px">Score <input type="number" min="0" max="99" id="s-${c.id}-${r}-${i}-a" value="${m.sa}" aria-label="${safe(m.a)} score"></label><span>:</span><label style="font-size:10px"><input type="number" min="0" max="99" id="s-${c.id}-${r}-${i}-b" value="${m.sb}" aria-label="${safe(m.b)} score"></label></div><button class="btn small" style="width:100%;margin-top:7px" onclick="scoreMatch(${c.id},${r},${i})">Save result</button>`:''}</div>`;
+}).join('')}</div>`).join('');
+const last=c.rounds[c.rounds.length-1]?.[0];
+const champion=last?.winner?(last.winner==='a'?last.a:last.b):'Not decided';
+return `<div class="feedbox"><div class="sectionhead" style="margin-top:0"><div><span class="tag">${safe(c.game)}</span><h2 style="margin-top:8px">${safe(c.name)}</h2><p>${c.players.length} players · Created ${safe(c.created)}</p></div><button class="btn small" onclick="shareCup(${c.id})">↗ Share</button></div><div class="bracket">${rounds}</div><div class="statrow"><div class="stat"><strong>${c.players.length}</strong><span>PLAYERS</span></div><div class="stat"><strong>${champion==='Not decided'?'—':safe(champion)}</strong><span>CHAMPION</span></div></div><button class="btn small" style="margin-top:12px" onclick="deleteCup(${c.id})">Delete tournament</button></div>`;
+}).join(''):'<div class="empty">🏆<h3>No tournaments yet</h3>Create a cup above and invite your friends to compete.</div>';
+write('cups',cups);
+}
+function shareCup(id){
+const c=cups.find(x=>x.id===id);if(!c)return;
+const text=`🏆 ${c.name}\nGame: ${c.game}\nPlayers: ${c.players.join(', ')}\nJoin the competition on GameScope+!`;
+if(navigator.share)navigator.share({title:c.name,text}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(text).then(()=>toast('Tournament details copied.')).catch(()=>toast(text));else toast(text);
+}
+function deleteCup(id){if(!confirm('Delete this tournament?'))return;cups=cups.filter(c=>c.id!==id);write('cups',cups);renderCups();renderProfile()}
+function createChallenge(){
+const from=$('challengeFrom').value.trim()||profile.name||'Gamer',to=$('challengeTo').value.trim();
+if(!to){toast('Enter your friend’s nickname.');return}
+if(from.toLowerCase()===to.toLowerCase()){toast('Choose a different opponent.');return}
+challenges.unshift({id:Date.now(),from,to,game:$('challengeGame').value,mode:$('challengeMode').value,status:'Invitation created locally'});
+write('challenges',challenges);renderChallenges();toast('Challenge created. Share it with your friend!');
+}
+function renderChallenges(){
+$('challengeList').innerHTML=challenges.length?challenges.map(c=>`<div class="feedbox"><div class="sectionhead" style="margin-top:0"><div><h3>⚔ ${safe(c.from)} vs ${safe(c.to)}</h3><p>${safe(c.game)} · ${safe(c.mode)}</p></div><span class="tag">DEMO</span></div><p class="muted">${safe(c.status)}</p><button class="btn small" onclick="shareChallenge(${c.id})">↗ Share challenge</button> <button class="btn small" onclick="deleteChallenge(${c.id})">Delete</button></div>`).join(''):'<div class="empty">No challenges yet. Create your first friendly match.</div>';
+}
+function shareChallenge(id){
+const c=challenges.find(x=>x.id===id);if(!c)return;const text=`⚔ GameScope+ Challenge\n${c.from} vs ${c.to}\nGame: ${c.game}\nMode: ${c.mode}\nArrange your match and agree on the result!`;
+if(navigator.share)navigator.share({title:'GameScope+ Challenge',text}).catch(()=>{});else if(navigator.clipboard)navigator.clipboard.writeText(text).then(()=>toast('Challenge copied.')).catch(()=>toast(text));else toast(text);
+}
+function deleteChallenge(id){challenges=challenges.filter(c=>c.id!==id);write('challenges',challenges);renderChallenges()}
+const sampleLeaders=[['1','NovaStrike','eFootball · Free Fire','2,840'],['2','PixelGhost','PUBG Mobile','2,610'],['3','AtlasGaming','eFootball Mobile','2,450'],['4','ShadowFox','Mobile Legends','2,210'],['5','ClutchKing','COD Mobile','1,980']];
+function leaderHTML(x){return `<div class="leader"><span class="rank">${x[0]}</span><div class="avatar">${safe(x[1][0])}</div><div class="leaderinfo"><strong>${safe(x[1])}</strong><small>${safe(x[2])}</small></div><span class="points">${safe(x[3])}</span></div>`}
+function renderLeaders(){$('leaderboard').innerHTML=sampleLeaders.map(leaderHTML).join('');$('sideLeaders').innerHTML=sampleLeaders.slice(0,3).map(leaderHTML).join('')}
+function gameCard(g){return `<article class="card"><div class="cover c${g.c}">${g.emoji}</div><div class="cardbody"><span class="tag">${safe(g.platform)}</span><h3 style="margin-top:10px">${safe(g.name)}</h3><p class="muted">${safe(g.desc)}</p><div class="formrow"><button class="btn small" onclick="gameCommunity('${safe(g.name)}')">Community</button><button class="btn small" onclick="showView('tournaments')">Challenge ↗</button></div></div></article>`}
+function renderGames(){$('gameCatalog').innerHTML=games.map(gameCard).join('')}
+function renderFree(){const free=games.filter(g=>['Warframe','Free Fire','PUBG Mobile','Mobile Legends','Brawl Stars','Call of Duty Mobile'].includes(g.name));$('freeCatalog').innerHTML=free.map(gameCard).join('')}
+function gameCommunity(game){
+$('postGame').value=[...$('postGame').options].some(o=>o.value===game)?game:'General Gaming';
+showView('home');$('postText').focus();toast('Write a post about '+game+'.');
+}
 async function loadDeals(){
-  if(loadingDeals) return;
-  loadingDeals = true;
-  $("apiStatus").textContent = "Refreshing live deal data…";
-  $("dealError").textContent = "";
-
-  try{
-    const results = await Promise.all([
-      fetchJSON(API + "/deals?sortBy=Deal%20Rating&pageSize=60"),
-      fetchJSON(API + "/stores")
-    ]);
-
-    allOffers = Array.isArray(results[0]) ? results[0] : [];
-    stores = {};
-    if(Array.isArray(results[1])){
-      results[1].forEach(s => { stores[String(s.storeID)] = s; });
-    }
-
-    $("apiStatus").textContent = allOffers.length
-      ? `Live data · ${allOffers.length} offers loaded · Prices in USD`
-      : "The feed returned no offers.";
-
-    renderHomeDeals();
-    renderDeals();
-  }catch(error){
-    $("apiStatus").textContent = "Live deal feed temporarily unavailable.";
-    $("dealError").textContent = "Could not load live deals. Check your connection and try Refresh. (" + error.message + ")";
-    $("homeDeals").innerHTML = `<div class="empty">Live offers could not be loaded. Please try again.</div>`;
-    $("dealGrid").innerHTML = `<div class="empty">Could not connect to the live deal service. Please refresh later.</div>`;
-    $("dealCount").textContent = "No live data loaded.";
-  }finally{
-    loadingDeals = false;
-  }
+$('dealStatus').textContent='Connecting to CheapShark...';
+try{
+const [d,s]=await Promise.all([
+fetch('https://www.cheapshark.com/api/1.0/deals?pageSize=60&sortBy=DealRating&onSale=1').then(r=>{if(!r.ok)throw Error('deals');return r.json()}),
+fetch('https://www.cheapshark.com/api/1.0/stores').then(r=>{if(!r.ok)throw Error('stores');return r.json()})
+]);
+deals=d;stores={};s.forEach(x=>stores[String(x.storeID)]=x.storeName);
+$('dealStatus').textContent=`LIVE DATA · ${deals.length} offers loaded. Prices in USD.`;
+renderDeals();
+}catch(e){$('dealStatus').textContent='Live deals could not load. Check your connection or try again later.';$('dealGrid').innerHTML='<div class="empty">The deals API is temporarily unavailable. Your social and tournament demo still works.</div>'}
 }
-
-window.toggleWishlist = toggleWishlist;
-
-window.compareGame = function(gameID,title){
-  const matches = allOffers.filter(d =>
-    (gameID && String(d.gameID) === String(gameID)) ||
-    normalTitle(d.title) === normalTitle(title)
-  );
-
-  const unique = new Map();
-  for(const deal of matches){
-    const storeKey = String(deal.storeID) + ":" + String(deal.gameID);
-    const existing = unique.get(storeKey);
-    if(!existing || Number(deal.salePrice) < Number(existing.salePrice)){
-      unique.set(storeKey,deal);
-    }
-  }
-
-  const offers = [...unique.values()].sort((a,b)=>Number(a.salePrice)-Number(b.salePrice));
-  $("modalTitle").textContent = title || "Compare prices";
-  $("modalSubtitle").textContent = `${offers.length} matching offer${offers.length===1?"":"s"} found in the currently loaded feed.`;
-
-  $("compareResults").innerHTML = offers.length
-    ? offers.map((d,i)=>`
-      <div class="compare-row">
-        <div>
-          <div class="compare-store">${i===0?"★ Best price · ":""}${escapeHTML(storeName(d.storeID))}</div>
-          <div class="small">${escapeHTML(d.title)} · ${discountPercent(d)}% off listed normal price</div>
-        </div>
-        <div style="text-align:right">
-          <div class="compare-price">${money(d.salePrice)}</div>
-          <a class="btn primary" style="margin-top:6px" href="${escapeHTML(dealURL(d))}" target="_blank" rel="noopener noreferrer">View deal ↗</a>
-        </div>
-      </div>`).join("")
-    : `<div class="empty">No matching offers found in the current data. Try searching the main deal list.</div>`;
-
-  $("compareModal").classList.add("open");
-};
-
-function closeModal(){
-  $("compareModal").classList.remove("open");
+function renderDeals(){
+const q=($('dealSearch')?.value||'').toLowerCase(),f=$('dealFilter')?.value||'all',sort=$('dealSort')?.value||'discount';
+let arr=deals.filter(d=>String(d.title||'').toLowerCase().includes(q));
+if(f==='free')arr=arr.filter(d=>Number(d.salePrice)===0);
+if(f==='50')arr=arr.filter(d=>Number(d.savings)>=50);
+if(f==='75')arr=arr.filter(d=>Number(d.savings)>=75);
+arr.sort((a,b)=>sort==='price'?Number(a.salePrice)-Number(b.salePrice):sort==='name'?a.title.localeCompare(b.title):Number(b.savings)-Number(a.savings));
+$('dealGrid').innerHTML=arr.length?arr.slice(0,60).map(d=>{
+const price=Number(d.salePrice),normal=Number(d.normalPrice),store=safe(stores[String(d.storeID)]||'Supported store');
+const cover=d.thumb?`<img src="${safe(d.thumb)}" alt="" loading="lazy" style="width:100%;height:100%;object-fit:cover" onerror="this.style.display='none'">`:'🎮';
+return `<article class="card deal"><div class="cover">${cover}<span style="position:absolute;top:9px;right:9px" class="pill">${price===0?'FREE':Math.round(Number(d.savings))+'% OFF'}</span></div><div class="cardbody" style="display:flex;flex-direction:column;flex:1"><h3>${safe(d.title)}</h3><div class="dealstore">${store} · PC</div><div style="margin-top:auto"><span class="price">$${price.toFixed(2)}</span><span class="oldprice">$${normal.toFixed(2)}</span></div><a class="btn primary" style="text-align:center;margin-top:13px" href="https://www.cheapshark.com/redirect?dealID=${encodeURIComponent(d.dealID)}" target="_blank" rel="noopener noreferrer">View deal ↗</a></div></article>`;
+}).join(''):'<div class="empty">No deals match these filters.</div>';
 }
-$("closeModal").addEventListener("click",closeModal);
-$("compareModal").addEventListener("click",e=>{
-  if(e.target === $("compareModal")) closeModal();
-});
-document.addEventListener("keydown",e=>{
-  if(e.key === "Escape") closeModal();
-});
-
-function libraryCard(game){
-  const key = "library:" + game.title;
-  const saved = wishlist.has(key);
-  return `
-    <article class="card">
-      <div class="game-cover"><span class="cover-fallback">${escapeHTML(game.icon)}</span></div>
-      <div class="card-body">
-        <div class="card-title">${escapeHTML(game.title)}</div>
-        <p class="game-desc">${escapeHTML(game.desc)}</p>
-        <span class="pill">${escapeHTML(game.genre)}</span>
-        <span class="pill">PC</span>
-        <div class="card-actions">
-          <a class="btn primary" href="${escapeHTML(game.url)}" target="_blank" rel="noopener noreferrer">Store ↗</a>
-          <button class="btn heart ${saved?"saved":""}" onclick="toggleWishlist('${escapeHTML(key)}')" aria-label="Toggle wishlist">${saved?"♥":"♡"}</button>
-        </div>
-      </div>
-    </article>`;
-}
-
-function renderLibrary(){
-  const query = $("librarySearch").value.trim().toLowerCase();
-  const genre = $("genreFilter").value;
-  const filtered = games.filter(g =>
-    g.title.toLowerCase().includes(query) &&
-    (genre==="All" || g.genre===genre)
-  );
-  $("libraryGrid").innerHTML = filtered.length
-    ? filtered.map(libraryCard).join("")
-    : `<div class="empty">No games match your search.</div>`;
-}
-
-function renderFreeGames(){
-  $("freeGrid").innerHTML = freeGames.map(libraryCard).join("");
-}
-
-async function loadNews(){
-  $("newsStatus").textContent = "Loading headlines…";
-  $("newsGrid").innerHTML = `<div class="loading">Loading gaming news…</div>`;
-
-  try{
-    const requests = NEWS_FEEDS.map(feed =>
-      fetchJSON("https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feed))
-    );
-    const responses = await Promise.allSettled(requests);
-    const articles = [];
-
-    responses.forEach(result=>{
-      if(result.status==="fulfilled" && result.value.status==="ok"){
-        (result.value.items || []).forEach(item=>{
-          articles.push({
-            title:item.title || "Gaming news",
-            link:safeURL(item.link),
-            date:item.pubDate || "",
-            source:result.value.feed?.title || "Gaming publication",
-            description:item.description || ""
-          });
-        });
-      }
-    });
-
-    const unique = [...new Map(articles.filter(a=>a.link!=="#").map(a=>[a.link,a])).values()]
-      .sort((a,b)=>new Date(b.date).getTime()-new Date(a.date).getTime())
-      .slice(0,8);
-
-    if(!unique.length){
-      $("newsStatus").textContent = "News feed temporarily unavailable.";
-      $("newsGrid").innerHTML = `<div class="empty">Could not load the news feed. Try again later or visit PC Gamer and IGN directly.</div>`;
-      return;
-    }
-
-    $("newsStatus").textContent = `${unique.length} gaming headlines loaded.`;
-    $("newsGrid").innerHTML = unique.map(a=>{
-      const parsedDate = new Date(a.date);
-      const date = a.date && !Number.isNaN(parsedDate.getTime())
-        ? parsedDate.toLocaleDateString()
-        : "Latest";
-      const plain = a.description.replace(/<[^>]*>/g," ").replace(/\s+/g," ").trim();
-      return `<article class="news-item">
-        <div class="eyebrow">GAMING NEWS · ${escapeHTML(date)}</div>
-        <h3>${escapeHTML(a.title)}</h3>
-        <p>${escapeHTML(plain.slice(0,170))}${plain.length>170?"…":""}</p>
-        <a href="${escapeHTML(a.link)}" target="_blank" rel="noopener noreferrer">Read story ↗</a>
-      </article>`;
-    }).join("");
-  }catch(error){
-    $("newsStatus").textContent = "News feed temporarily unavailable.";
-    $("newsGrid").innerHTML = `<div class="empty">Unable to load headlines right now. Please try again later.</div>`;
-  }
-}
-
-$("refreshDeals").addEventListener("click",loadDeals);
-$("refreshDeals2").addEventListener("click",loadDeals);
-$("homeSearch").addEventListener("input",renderHomeDeals);
-$("dealSearch").addEventListener("input",renderDeals);
-$("dealSort").addEventListener("change",renderDeals);
-$("allDealsTab").addEventListener("click",()=>{dealMode="all";renderDeals();});
-$("freeDealsTab").addEventListener("click",()=>{dealMode="free";renderDeals();});
-$("wishlistTab").addEventListener("click",()=>{dealMode="wishlist";renderDeals();});
-$("librarySearch").addEventListener("input",renderLibrary);
-$("genreFilter").addEventListener("change",renderLibrary);
-$("refreshNews").addEventListener("click",loadNews);
-
-$("year").textContent = new Date().getFullYear();
-
-renderLibrary();
-renderFreeGames();
-loadDeals();
-loadNews();
+renderFeed();renderProfile();renderLeaders();renderChallenges();renderCups();renderGames();renderFree();loadDeals();
 </script>
 </body>
 </html>
