@@ -4,1274 +4,548 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#10110f">
-<meta name="description" content="GameScope+ — gaming news, game discovery, free games, deals and PC gaming help.">
-<title>GameScope+ | Gaming Hub</title>
-
+<meta name="theme-color" content="#111411">
+<meta name="description" content="GameScope+ — PC gaming news, game discovery, free games and live deals.">
+<title>GameScope+ | Gaming Intelligence</title>
 <style>
-:root {
-  --bg: #10110f;
-  --panel: #191b18;
-  --panel2: #20231e;
-  --lime: #c7ff4f;
-  --text: #f4f5ef;
-  --muted: #a2a69a;
-  --border: #30342b;
-  --red: #ff6868;
-  --radius: 16px;
-}
-
-* { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 85px; }
-body {
-  margin: 0;
-  background: var(--bg);
-  color: var(--text);
-  font-family: Inter, Arial, Helvetica, sans-serif;
-  line-height: 1.55;
-}
-a { color: inherit; text-decoration: none; }
-button, input, select { font: inherit; }
-button, select { cursor: pointer; }
-button:focus-visible, a:focus-visible, input:focus-visible, select:focus-visible {
-  outline: 2px solid var(--lime);
-  outline-offset: 3px;
-}
-img { max-width: 100%; display: block; }
-.container { width: min(1180px, 92%); margin: auto; }
-.muted { color: var(--muted); }
-.small { font-size: 12px; color: var(--muted); }
-.section { padding: 52px 0; }
-.section-head {
-  display: flex;
-  align-items: end;
-  justify-content: space-between;
-  gap: 20px;
-  margin-bottom: 24px;
-}
-.section-head h2 { margin: 0; font-size: clamp(25px, 4vw, 36px); }
-.section-head p { margin: 6px 0 0; color: var(--muted); }
-.eyebrow {
-  color: var(--lime);
-  text-transform: uppercase;
-  font-size: 11px;
-  font-weight: 900;
-  letter-spacing: 2px;
-}
-.accent { color: var(--lime); }
-.btn {
-  border: 1px solid var(--border);
-  background: var(--panel2);
-  color: var(--text);
-  padding: 10px 15px;
-  border-radius: 10px;
-  display: inline-flex;
-  justify-content: center;
-  align-items: center;
-  gap: 7px;
-  font-weight: 800;
-  font-size: 13px;
-  transition: .2s;
-}
-.btn:hover { border-color: var(--lime); transform: translateY(-1px); }
-.btn.primary { background: var(--lime); color: #11140b; border-color: var(--lime); }
-.btn.small-btn { padding: 7px 10px; font-size: 12px; }
-.btn:disabled { opacity: .5; cursor: not-allowed; transform: none; }
-.pill {
-  display: inline-block;
-  background: #292e20;
-  color: var(--lime);
-  border: 1px solid #3c4825;
-  padding: 4px 9px;
-  border-radius: 99px;
-  font-size: 11px;
-  font-weight: 800;
-}
-
-/* HEADER */
-header {
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  background: rgba(16,17,15,.94);
-  backdrop-filter: blur(14px);
-  border-bottom: 1px solid var(--border);
-}
-.header-inner {
-  min-height: 70px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 22px;
-}
-.logo { font-size: 23px; font-weight: 1000; letter-spacing: -1px; white-space: nowrap; }
-.logo span { color: var(--lime); }
-nav { display: flex; align-items: center; gap: 19px; }
-nav a { font-size: 13px; color: #d5d8cf; font-weight: 700; }
-nav a:hover, nav a.active { color: var(--lime); }
-.menu-toggle {
-  display: none;
-  background: var(--panel2);
-  color: var(--text);
-  border: 1px solid var(--border);
-  padding: 8px 12px;
-  border-radius: 9px;
-}
-
-/* NEWS */
-.news-strip { padding: 20px 0 4px; }
-.news-topline {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 13px;
-  font-size: 12px;
-  font-weight: 900;
-  text-transform: uppercase;
-  letter-spacing: 1px;
-}
-.live-dot {
-  width: 8px; height: 8px; border-radius: 50%;
-  background: var(--lime);
-  box-shadow: 0 0 12px var(--lime);
-}
-.news-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 12px;
-}
-.news-card {
-  display: flex;
-  flex-direction: column;
-  min-width: 0;
-  overflow: hidden;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 13px;
-  transition: .2s;
-}
-.news-card:hover { border-color: #596a35; transform: translateY(-2px); }
-.news-card img { width: 100%; height: 118px; object-fit: cover; background: var(--panel2); }
-.news-card-body { padding: 12px; }
-.news-card h3 { font-size: 13px; line-height: 1.4; margin: 7px 0; }
-.news-card .news-source { color: var(--lime); font-size: 10px; font-weight: 900; text-transform: uppercase; }
-.news-card .news-date { font-size: 10px; color: var(--muted); }
-.news-status { font-size: 12px; color: var(--muted); margin: 10px 0; }
-
-/* HERO */
-.hero { padding: 48px 0 35px; }
-.hero-box {
-  position: relative;
-  overflow: hidden;
-  border: 1px solid #384128;
-  border-radius: 24px;
-  padding: clamp(25px, 5vw, 58px);
-  background:
-    radial-gradient(ellipse at 82% 30%, rgba(199,255,79,.16), transparent 34%),
-    linear-gradient(125deg, #20251a, #131511 65%);
-}
-.hero-box::after {
-  content: "G+";
-  position: absolute;
-  right: 5%;
-  top: 2%;
-  font-size: clamp(130px, 24vw, 290px);
-  line-height: 1;
-  font-weight: 1000;
-  color: rgba(199,255,79,.045);
-  pointer-events: none;
-}
-.hero-content { position: relative; z-index: 1; max-width: 700px; }
-.hero h1 { font-size: clamp(37px, 7vw, 72px); line-height: 1.03; letter-spacing: -2.5px; margin: 15px 0; }
-.hero p { max-width: 580px; color: #b9beb0; font-size: 16px; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 24px; }
-.hero-stats { display: flex; flex-wrap: wrap; gap: 24px; margin-top: 30px; }
-.hero-stats strong { display: block; font-size: 20px; }
-.hero-stats span { color: var(--muted); font-size: 11px; }
-
-/* FILTERS AND CARDS */
-.toolbar { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 20px; }
-.control {
-  min-width: 0;
-  background: var(--panel);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 10px;
-  padding: 11px 13px;
-}
-.search-control { flex: 1 1 220px; }
-.toolbar select { min-width: 140px; }
-.game-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 16px;
-}
-.game-card {
-  overflow: hidden;
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  background: var(--panel);
-  min-width: 0;
-  transition: .2s;
-}
-.game-card:hover { border-color: #53632f; transform: translateY(-3px); }
-.game-cover {
-  height: 165px;
-  background: var(--panel2);
-  position: relative;
-  overflow: hidden;
-}
-.game-cover img { width: 100%; height: 100%; object-fit: cover; }
-.game-cover .pill { position: absolute; top: 10px; left: 10px; }
-.game-card-body { padding: 14px; }
-.game-card h3 { font-size: 16px; line-height: 1.3; margin: 0 0 5px; }
-.game-card p { color: var(--muted); font-size: 12px; margin: 7px 0 13px; min-height: 36px; }
-.game-meta { display: flex; justify-content: space-between; gap: 8px; font-size: 11px; color: var(--muted); margin-bottom: 12px; }
-.card-actions { display: flex; gap: 7px; flex-wrap: wrap; }
-.card-actions .btn { flex: 1; }
-.empty-state {
-  padding: 30px 18px;
-  border: 1px dashed var(--border);
-  border-radius: 14px;
-  text-align: center;
-  color: var(--muted);
-  grid-column: 1 / -1;
-}
-
-/* DEAL HUNTER */
-.deals-section {
-  background: linear-gradient(180deg, #141711 0%, #10110f 100%);
-  border-top: 1px solid #262b20;
-  border-bottom: 1px solid #262b20;
-}
-.deal-intro {
-  padding: 20px;
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 15px;
-  margin-bottom: 20px;
-}
-.deal-intro strong { color: var(--lime); }
-.deal-tabs { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 17px; }
-.tab-btn {
-  background: var(--panel);
-  color: var(--muted);
-  border: 1px solid var(--border);
-  border-radius: 9px;
-  padding: 9px 13px;
-  font-weight: 800;
-  font-size: 12px;
-}
-.tab-btn.active { background: var(--lime); border-color: var(--lime); color: #11140b; }
-.deal-price { color: var(--lime); font-weight: 900; font-size: 13px; }
-.wishlist-btn { flex: 0 0 auto !important; min-width: 42px; }
-.wishlist-btn.saved { color: var(--lime); border-color: #53632f; }
-.wishlist-count { color: var(--lime); }
-.disclaimer { color: var(--muted); font-size: 11px; margin-top: 16px; }
-
-/* FREE AND HELP */
-.feature-grid { display: grid; grid-template-columns: repeat(3, minmax(0,1fr)); gap: 15px; }
-.feature-card {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: var(--radius);
-  padding: 20px;
-}
-.feature-icon { font-size: 25px; margin-bottom: 10px; }
-.feature-card h3 { margin: 0 0 7px; font-size: 17px; }
-.feature-card p { color: var(--muted); font-size: 13px; }
-.feature-card a { color: var(--lime); font-weight: 800; font-size: 12px; }
-.help-list { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 12px; }
-.help-item {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 17px;
-}
-.help-item h3 { font-size: 14px; margin: 0 0 5px; }
-.help-item p { color: var(--muted); font-size: 12px; margin: 0 0 10px; }
-.help-item a { color: var(--lime); font-size: 12px; font-weight: 800; }
-
-/* MODAL */
-.modal {
-  position: fixed;
-  inset: 0;
-  z-index: 100;
-  display: none;
-  align-items: center;
-  justify-content: center;
-  padding: 18px;
-  background: rgba(0,0,0,.8);
-}
-.modal.open { display: flex; }
-.modal-box {
-  width: min(650px, 100%);
-  max-height: 90vh;
-  overflow: auto;
-  background: #171914;
-  border: 1px solid #424a33;
-  border-radius: 18px;
-  padding: 23px;
-}
-.modal-top { display: flex; align-items: start; justify-content: space-between; gap: 15px; }
-.modal-top h2 { margin: 0; }
-.close-btn {
-  background: var(--panel2);
-  color: var(--text);
-  border: 1px solid var(--border);
-  border-radius: 8px;
-  padding: 5px 10px;
-}
-.spec-grid { display: grid; grid-template-columns: repeat(2,minmax(0,1fr)); gap: 12px; margin: 18px 0; }
-.spec {
-  background: var(--panel);
-  border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: 14px;
-}
-.spec h3 { color: var(--lime); font-size: 13px; margin: 0 0 7px; }
-.spec p { color: #c5c9bd; font-size: 12px; margin: 0; }
-.modal-links { display: flex; flex-wrap: wrap; gap: 9px; }
-
-/* FOOTER */
-footer { border-top: 1px solid var(--border); padding: 30px 0; color: var(--muted); font-size: 12px; }
-.footer-inner { display: flex; justify-content: space-between; gap: 20px; flex-wrap: wrap; }
-footer a { color: var(--lime); }
-
-@media (max-width: 900px) {
-  .game-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
-  .news-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-  nav { gap: 12px; }
-  nav a { font-size: 12px; }
-}
-@media (max-width: 650px) {
-  .header-inner { min-height: 62px; }
-  .menu-toggle { display: block; }
-  nav {
-    display: none;
-    position: absolute;
-    left: 0; right: 0; top: 62px;
-    padding: 15px 4%;
-    background: #141511;
-    border-bottom: 1px solid var(--border);
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0;
-  }
-  nav.open { display: flex; }
-  nav a { padding: 11px 4px; font-size: 14px; }
-  .section { padding: 38px 0; }
-  .hero { padding-top: 28px; }
-  .hero h1 { letter-spacing: -1.5px; }
-  .game-grid { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 10px; }
-  .game-cover { height: 125px; }
-  .game-card-body { padding: 11px; }
-  .game-card h3 { font-size: 14px; }
-  .game-card p { font-size: 11px; min-height: 0; }
-  .card-actions .btn { font-size: 11px; padding: 8px; }
-  .feature-grid { grid-template-columns: 1fr; }
-  .help-list { grid-template-columns: 1fr; }
-  .section-head { align-items: start; flex-direction: column; }
-  .news-card img { height: 100px; }
-  .news-card-body { padding: 9px; }
-  .news-card h3 { font-size: 12px; }
-  .spec-grid { grid-template-columns: 1fr; }
-}
-@media (max-width: 360px) {
-  .game-grid { grid-template-columns: 1fr; }
-  .game-cover { height: 180px; }
-}
+:root{--bg:#101310;--panel:#191e19;--panel2:#202720;--text:#f2f5ef;--muted:#a4afa2;--lime:#b7f45a;--border:#303930;--red:#ff7979}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif;line-height:1.55}
+a{color:inherit;text-decoration:none}
+button,input,select{font:inherit}
+button,a,select{cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--lime);outline-offset:3px}
+header{position:sticky;top:0;z-index:20;background:#101310ed;backdrop-filter:blur(12px);border-bottom:1px solid var(--border)}
+.nav{max-width:1200px;margin:auto;padding:14px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px}
+.logo{font-size:22px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--lime)}
+nav{display:flex;gap:19px;flex-wrap:wrap}nav a{color:var(--muted);font-size:13px}nav a:hover{color:var(--lime)}
+.container{max-width:1200px;margin:auto;padding:0 22px}
+.hero{padding:65px 0 44px;display:grid;grid-template-columns:1.3fr .7fr;gap:30px;align-items:center}
+.eyebrow{color:var(--lime);font-size:11px;font-weight:900;letter-spacing:2px;text-transform:uppercase}
+h1{font-size:clamp(36px,6vw,66px);line-height:1.03;letter-spacing:-2px;margin:14px 0}
+h1 span{color:var(--lime)}.hero p{max-width:650px;color:var(--muted)}
+.hero-art{min-height:230px;border:1px solid #394634;border-radius:24px;background:radial-gradient(ellipse at 60% 35%,#425b2d 0,#1c2a1a 32%,#171c17 72%);display:flex;align-items:center;justify-content:center;font-size:92px}
+.btn{display:inline-flex;align-items:center;justify-content:center;border:1px solid var(--border);border-radius:9px;padding:10px 14px;background:var(--panel2);color:var(--text);font-weight:750;font-size:13px}
+.btn.primary{background:var(--lime);color:#14200c;border-color:var(--lime)}
+.btn:hover{filter:brightness(1.12)}
+.btn.small{padding:8px 10px;font-size:12px}
+section{padding:34px 0 44px;scroll-margin-top:80px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin-bottom:20px}
+h2{font-size:28px;letter-spacing:-.7px;margin:4px 0}
+.sub{color:var(--muted);font-size:13px;margin:0}
+.panel{border:1px solid var(--border);background:var(--panel);border-radius:15px;padding:18px}
+.controls{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0}
+input,select{min-width:0;background:#121712;color:var(--text);border:1px solid var(--border);border-radius:9px;padding:11px 12px}
+input{flex:1;min-width:180px}select{max-width:100%}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:15px}
+.card{min-width:0;overflow:hidden;background:var(--panel);border:1px solid var(--border);border-radius:13px;display:flex;flex-direction:column}
+.cover{height:145px;background:linear-gradient(140deg,#29352a,#131713);position:relative;overflow:hidden}
+.cover img{width:100%;height:100%;object-fit:cover;display:block}
+.pill{position:absolute;top:10px;left:10px;background:#101510e8;border:1px solid #45513e;border-radius:30px;padding:4px 8px;font-size:10px;font-weight:900;color:var(--lime)}
+.card-body{padding:14px;display:flex;flex-direction:column;flex:1}
+.card h3{font-size:16px;line-height:1.3;margin:0 0 7px}
+.meta{display:flex;gap:8px;justify-content:space-between;color:var(--muted);font-size:11px;margin-bottom:10px}
+.card p{font-size:12px;color:var(--muted);margin:0 0 14px;flex:1}
+.actions{display:flex;gap:7px;align-items:center;flex-wrap:wrap;margin-top:12px}
+.price{font-weight:900;color:var(--lime);font-size:17px}
+.old-price{font-size:12px;color:var(--muted);text-decoration:line-through;margin-left:5px}
+.save{width:36px;min-width:36px;padding:7px;color:var(--lime)}
+.save.saved{background:#304021;border-color:var(--lime)}
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:15px 0}
+.tab{padding:8px 12px;border-radius:8px;border:1px solid var(--border);background:var(--panel);color:var(--muted);font-size:12px;font-weight:800}
+.tab.active{background:var(--lime);color:#14200c;border-color:var(--lime)}
+.status{padding:16px;background:var(--panel);border:1px solid var(--border);border-radius:10px;color:var(--muted);font-size:13px;margin:12px 0}
+.status.error{color:var(--red)}
+.small-note{color:var(--muted);font-size:11px;margin-top:14px}
+footer{border-top:1px solid var(--border);padding:28px 0;color:var(--muted);font-size:12px}
+footer .container{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap}
+.modal{display:none;position:fixed;inset:0;background:#000b;z-index:50;align-items:center;justify-content:center;padding:20px}
+.modal.open{display:flex}
+.modal-content{width:min(560px,100%);max-height:85vh;overflow:auto;background:var(--panel);border:1px solid var(--border);border-radius:16px;padding:23px}
+.modal-content h2{margin-top:0}
+.modal-top{display:flex;justify-content:space-between;gap:12px;align-items:start}
+.close{background:transparent;border:1px solid var(--border);color:var(--text);border-radius:8px;padding:7px 11px}
+.empty{grid-column:1/-1;padding:28px;text-align:center;border:1px dashed var(--border);border-radius:12px;color:var(--muted)}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{grid-template-columns:1fr}.hero-art{min-height:150px}.hero{padding-top:42px}}
+@media(max-width:520px){.nav{align-items:flex-start;flex-direction:column;gap:10px}nav{gap:12px}.container{padding:0 14px}.grid{grid-template-columns:1fr 1fr;gap:9px}.cover{height:115px}.card-body{padding:10px}.card h3{font-size:14px}.card p{font-size:11px}.section-head{align-items:start;flex-direction:column}h2{font-size:24px}.hero-art{font-size:65px}.actions .btn{flex:1}}
 </style>
 </head>
-
 <body>
-
 <header>
-  <div class="container header-inner">
+  <div class="nav">
     <a class="logo" href="#home">GameScope<span>+</span></a>
-    <button class="menu-toggle" id="menuToggle" aria-label="Open navigation" aria-expanded="false">☰ Menu</button>
-    <nav id="mainNav">
+    <nav>
       <a href="#news">News</a>
       <a href="#games">Games</a>
       <a href="#deals">Deal Hunter</a>
-      <a href="#free-games">Free Games</a>
+      <a href="#free">Free Games</a>
       <a href="#help">Help & Fixes</a>
     </nav>
   </div>
 </header>
 
-<main id="home">
-
-  <!-- GAMING NEWS -->
-  <section class="container news-strip" id="news">
-    <div class="news-topline">
-      <span class="live-dot"></span>
-      Latest Gaming News
-      <span class="muted" style="margin-left:auto;font-weight:500;letter-spacing:0;text-transform:none">Gaming stories only</span>
-    </div>
-    <div class="news-grid" id="newsGrid">
-      <div class="empty-state">Loading gaming news...</div>
-    </div>
-    <p class="news-status" id="newsStatus" aria-live="polite">Connecting to gaming news feeds...</p>
-  </section>
-
-  <!-- HERO -->
-  <section class="container hero">
-    <div class="hero-box">
-      <div class="hero-content">
-        <span class="eyebrow">Your gaming world, in one place</span>
-        <h1>PLAY SMARTER.<br><span class="accent">GAME BETTER.</span></h1>
-        <p>Discover games, explore gaming news, find free-to-play titles, track your wishlist and check official stores — all in one place.</p>
-        <div class="hero-actions">
-          <a class="btn primary" href="#games">Explore Games ↗</a>
-          <a class="btn" href="#deals">⚡ Open Deal Hunter</a>
-          <a class="btn" href="#free-games">Free Games</a>
-        </div>
-        <div class="hero-stats">
-          <div><strong>01</strong><span>Gaming hub</span></div>
-          <div><strong>02</strong><span>Discover & compare</span></div>
-          <div><strong>03</strong><span>Build your wishlist</span></div>
-        </div>
+<main class="container">
+  <section class="hero" id="home">
+    <div>
+      <div class="eyebrow">Gaming intelligence · PC edition</div>
+      <h1>Play smarter.<br><span>Spend less.</span></h1>
+      <p>Discover PC games, follow gaming news, explore free-to-play titles and compare real game deals from supported stores.</p>
+      <div class="actions">
+        <a class="btn primary" href="#deals">Explore live deals ↗</a>
+        <a class="btn" href="#games">Discover games</a>
       </div>
     </div>
+    <div class="hero-art" aria-label="Gaming controller">🎮</div>
   </section>
 
-  <!-- GAME LIBRARY -->
-  <section class="container section" id="games">
+  <section id="news">
     <div class="section-head">
-      <div>
-        <div class="eyebrow">Explore your next game</div>
-        <h2>Game Library<span class="accent">.</span></h2>
-        <p>Search games and open the details for PC requirements and official links.</p>
-      </div>
-      <span class="pill" id="gameCount">8 GAMES</span>
+      <div><div class="eyebrow">Stay in the loop</div><h2>Latest Gaming News</h2><p class="sub">Gaming headlines from external feeds.</p></div>
+      <button class="btn small" id="refreshNews">Refresh news ↻</button>
     </div>
+    <div id="newsStatus" class="status">Loading gaming news…</div>
+    <div class="grid" id="newsGrid"></div>
+    <p class="small-note">News feeds are provided by third parties and may occasionally be unavailable.</p>
+  </section>
 
-    <div class="toolbar">
-      <input class="control search-control" id="gameSearch" type="search" placeholder="Search a game..." aria-label="Search games">
-      <select class="control" id="platformFilter" aria-label="Filter by platform">
-        <option value="all">All platforms</option>
-        <option value="pc">PC</option>
-        <option value="console">Console</option>
+  <section id="games">
+    <div class="section-head">
+      <div><div class="eyebrow">Find your next game</div><h2>Game Library</h2><p class="sub">Search games and filter by platform or genre.</p></div>
+    </div>
+    <div class="controls">
+      <input id="gameSearch" placeholder="Search games…" aria-label="Search games">
+      <select id="gameGenre" aria-label="Filter by genre">
+        <option value="all">All genres</option><option>Action</option><option>RPG</option><option>Battle Royale</option><option>Racing</option><option>FPS</option><option>Online</option>
       </select>
-      <select class="control" id="genreFilter" aria-label="Filter by genre">
-        <option value="all">All genres</option>
-        <option value="Action">Action</option>
-        <option value="RPG">RPG</option>
-        <option value="Battle Royale">Battle Royale</option>
-        <option value="Racing">Racing</option>
-        <option value="Shooter">Shooter</option>
+      <select id="gamePlatform" aria-label="Filter by platform">
+        <option value="all">All platforms</option><option value="PC">PC</option><option value="Console">Console</option>
       </select>
     </div>
-
-    <div class="game-grid" id="gameGrid"></div>
+    <div class="grid" id="gameGrid"></div>
   </section>
 
-  <!-- DEAL HUNTER: INTEGRATED INTO THE SAME PAGE -->
-  <section class="section deals-section" id="deals">
-    <div class="container">
-      <div class="section-head">
-        <div>
-          <div class="eyebrow">GameScope+ price finder</div>
-          <h2>Deal Hunter<span class="accent">.</span></h2>
-          <p>Find games, check official store prices and save your favourites.</p>
-        </div>
-        <span class="pill">YOUR GAME LIST</span>
-      </div>
-
-      <div class="deal-intro">
-        <strong>⚡ Find your next game without wasting money.</strong>
-        <p class="muted" style="margin:7px 0 0;font-size:13px">
-          Search the catalogue, filter free-to-play games, open official store pages and save games to your personal wishlist.
-          Your wishlist is stored in this browser.
-        </p>
-      </div>
-
-      <div class="toolbar">
-        <input class="control search-control" id="dealSearch" type="search" placeholder="Search games in Deal Hunter..." aria-label="Search Deal Hunter">
-        <select class="control" id="dealGenre" aria-label="Filter deals by genre">
-          <option value="all">All genres</option>
-          <option value="Action">Action</option>
-          <option value="RPG">RPG</option>
-          <option value="Battle Royale">Battle Royale</option>
-          <option value="Racing">Racing</option>
-          <option value="Shooter">Shooter</option>
-          <option value="Strategy">Strategy</option>
-          <option value="Adventure">Adventure</option>
+  <section id="deals">
+    <div class="section-head">
+      <div><div class="eyebrow">Real store data</div><h2>Deal Hunter</h2><p class="sub">Live PC deals supplied by CheapShark.</p></div>
+      <button class="btn primary" id="refreshDeals">Refresh deals ↻</button>
+    </div>
+    <div class="panel">
+      <div class="controls">
+        <input id="dealSearch" placeholder="Search current deals…" aria-label="Search current deals">
+        <select id="dealGenre" aria-label="Filter deal type">
+          <option value="all">All deals</option><option value="paid">Discounted games</option><option value="free">Free / $0 games</option>
         </select>
-        <select class="control" id="dealSort" aria-label="Sort Deal Hunter games">
-          <option value="name">Sort: Name</option>
-          <option value="free">Free games first</option>
+        <select id="dealSort" aria-label="Sort deals">
+          <option value="rating">Best deal rating</option><option value="price">Lowest price</option><option value="savings">Biggest discount</option><option value="name">Name A–Z</option>
         </select>
       </div>
-
-      <div class="deal-tabs" role="group" aria-label="Deal Hunter tabs">
-        <button class="tab-btn active" data-deal-tab="all">All Games</button>
-        <button class="tab-btn" data-deal-tab="free">Free to Play</button>
-        <button class="tab-btn" data-deal-tab="wishlist">♥ My Wishlist <span class="wishlist-count" id="wishlistCount">0</span></button>
+      <div class="tabs" id="dealTabs">
+        <button class="tab active" data-tab="all">All Deals</button>
+        <button class="tab" data-tab="free">Free / $0</button>
+        <button class="tab" data-tab="wishlist">My Wishlist ♥</button>
       </div>
-
-      <div class="game-grid" id="dealGrid"></div>
-      <p class="disclaimer">
-        Price information: GameScope+ does not display invented prices or discount percentages. Click the official store link to check the current price in your region. Live price comparison and historical price charts require a supported price-data API.
-      </p>
+      <div id="dealStatus" class="status">Loading current deals…</div>
+      <div class="grid" id="dealGrid"></div>
+      <p class="small-note">Prices are shown in USD as returned by CheapShark. Deals may change or expire. Availability and discounts depend on the listed store and region. Use the deal link to check the current offer.</p>
+      <p class="small-note">Deal data provided by <a href="https://www.cheapshark.com/" target="_blank" rel="noopener noreferrer" style="color:var(--lime)">CheapShark</a>.</p>
     </div>
   </section>
 
-  <!-- FREE GAMES -->
-  <section class="container section" id="free-games">
+  <section id="free">
     <div class="section-head">
-      <div>
-        <div class="eyebrow">Play without paying for the game</div>
-        <h2>Free Games<span class="accent">.</span></h2>
-        <p>These games can be played for free. Optional in-game purchases may apply.</p>
-      </div>
-      <a class="btn" href="#deals" onclick="setDealTab('free')">Browse free games ↗</a>
+      <div><div class="eyebrow">Zero-cost gaming</div><h2>Free Games</h2><p class="sub">Popular free-to-play PC games.</p></div>
     </div>
-
-    <div class="feature-grid">
-      <article class="feature-card">
-        <div class="feature-icon">🎯</div>
-        <h3>Counter-Strike 2</h3>
-        <p>Competitive tactical multiplayer shooter. Free to play on PC.</p>
-        <a href="https://store.steampowered.com/app/730/CounterStrike_2/" target="_blank" rel="noopener noreferrer">Official Steam page ↗</a>
-      </article>
-      <article class="feature-card">
-        <div class="feature-icon">🚀</div>
-        <h3>Warframe</h3>
-        <p>Fast-paced cooperative action with missions, weapons and customisation.</p>
-        <a href="https://store.steampowered.com/app/230410/Warframe/" target="_blank" rel="noopener noreferrer">Official Steam page ↗</a>
-      </article>
-      <article class="feature-card">
-        <div class="feature-icon">🪂</div>
-        <h3>PUBG: Battlegrounds</h3>
-        <p>Battle royale survival. Check the official store for availability and details.</p>
-        <a href="https://store.steampowered.com/app/578080/PUBG_BATTLEGROUNDS/" target="_blank" rel="noopener noreferrer">Official Steam page ↗</a>
-      </article>
-    </div>
+    <div class="grid" id="freeGrid"></div>
   </section>
 
-  <!-- HELP AND FIXES -->
-  <section class="container section" id="help">
+  <section id="help">
     <div class="section-head">
-      <div>
-        <div class="eyebrow">Get back in the game</div>
-        <h2>Help & Fixes<span class="accent">.</span></h2>
-        <p>Official resources for common PC gaming problems.</p>
-      </div>
+      <div><div class="eyebrow">Troubleshooting</div><h2>Help & Fixes</h2><p class="sub">Official resources for common PC gaming problems.</p></div>
     </div>
-
-    <div class="help-list">
-      <article class="help-item">
-        <h3>🧩 Game won't launch?</h3>
-        <p>Check files, updates, system requirements and supported troubleshooting steps.</p>
-        <a href="https://help.steampowered.com/" target="_blank" rel="noopener noreferrer">Steam Support ↗</a>
-      </article>
-      <article class="help-item">
-        <h3>🎮 NVIDIA graphics problems</h3>
-        <p>Find official graphics drivers and help with installation.</p>
-        <a href="https://www.nvidia.com/Download/index.aspx" target="_blank" rel="noopener noreferrer">NVIDIA Driver Downloads ↗</a>
-      </article>
-      <article class="help-item">
-        <h3>🖥️ Low FPS or stuttering</h3>
-        <p>Check game requirements, update drivers and close unnecessary background applications.</p>
-        <a href="https://support.microsoft.com/windows" target="_blank" rel="noopener noreferrer">Microsoft Windows Support ↗</a>
-      </article>
-      <article class="help-item">
-        <h3>🔐 Account or purchase problem</h3>
-        <p>Use the official support channel for your platform. Never share your password.</p>
-        <a href="https://www.epicgames.com/help/" target="_blank" rel="noopener noreferrer">Epic Games Help ↗</a>
-      </article>
+    <div class="grid">
+      <article class="card"><div class="card-body"><h3>Steam Support</h3><p>Game crashes, purchases, downloads and account issues.</p><a class="btn" href="https://help.steampowered.com/" target="_blank" rel="noopener noreferrer">Open support ↗</a></div></article>
+      <article class="card"><div class="card-body"><h3>NVIDIA Drivers</h3><p>Find graphics drivers and updates for supported GPUs.</p><a class="btn" href="https://www.nvidia.com/Download/index.aspx" target="_blank" rel="noopener noreferrer">Find drivers ↗</a></div></article>
+      <article class="card"><div class="card-body"><h3>Windows Help</h3><p>Windows updates, compatibility and common system issues.</p><a class="btn" href="https://support.microsoft.com/windows" target="_blank" rel="noopener noreferrer">Get help ↗</a></div></article>
+      <article class="card"><div class="card-body"><h3>Epic Games Support</h3><p>Launcher problems, game downloads and account help.</p><a class="btn" href="https://www.epicgames.com/help/" target="_blank" rel="noopener noreferrer">Open support ↗</a></div></article>
     </div>
   </section>
 </main>
 
 <footer>
-  <div class="container footer-inner">
-    <div>
-      <a class="logo" href="#home">GameScope<span>+</span></a>
-      <p>Gaming news, discovery, free games and Deal Hunter.</p>
-    </div>
-    <div>Independent gaming project · Not affiliated with game publishers.</div>
-    <div>© <span id="year"></span> GameScope+</div>
-  </div>
+  <div class="container"><span>© <span id="year"></span> GameScope+ · Gaming intelligence</span><span>Independent gaming discovery website. Not affiliated with the listed publishers or stores.</span></div>
 </footer>
 
-<!-- GAME DETAILS MODAL -->
 <div class="modal" id="gameModal" role="dialog" aria-modal="true" aria-labelledby="modalTitle">
-  <div class="modal-box">
-    <div class="modal-top">
-      <div>
-        <div class="eyebrow">Game information</div>
-        <h2 id="modalTitle">Game title</h2>
-      </div>
-      <button class="close-btn" id="closeModal" aria-label="Close game details">✕</button>
-    </div>
-    <p class="muted" id="modalDescription"></p>
-    <div class="spec-grid">
-      <div class="spec">
-        <h3>Minimum requirements</h3>
-        <p id="modalMinimum"></p>
-      </div>
-      <div class="spec">
-        <h3>Recommended requirements</h3>
-        <p id="modalRecommended"></p>
-      </div>
-    </div>
-    <div class="modal-links" id="modalLinks"></div>
-    <p class="small" style="margin-top:14px">System requirements are approximate summaries. Check the official publisher or store page for the latest specifications.</p>
+  <div class="modal-content">
+    <div class="modal-top"><div><div class="eyebrow">Game details</div><h2 id="modalTitle">Game</h2></div><button class="close" id="closeModal" aria-label="Close dialog">✕</button></div>
+    <p id="modalDescription"></p>
+    <p><strong>Minimum requirements</strong></p><p id="modalMinimum" class="sub"></p>
+    <p><strong>Recommended requirements</strong></p><p id="modalRecommended" class="sub"></p>
+    <div class="actions" id="modalLinks"></div>
   </div>
 </div>
 
 <script>
 "use strict";
 
-/* --------------------------------------------------
-   GAME CATALOGUE
--------------------------------------------------- */
-
-const games = [
-  {
-    id: "gta5",
-    name: "Grand Theft Auto V",
-    genre: "Action",
-    platform: "pc",
-    type: "Paid",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg",
-    description: "Open-world action in Los Santos, with story missions and online multiplayer.",
-    store: "https://store.steampowered.com/app/271590/",
-    support: "https://support.rockstargames.com/",
-    minimum: "Windows 10 64-bit; 8 GB RAM; compatible graphics card; SSD/HDD space depends on edition.",
-    recommended: "Windows 10/11 64-bit; 16 GB RAM recommended; modern dedicated GPU; SSD recommended."
-  },
-  {
-    id: "cyberpunk2077",
-    name: "Cyberpunk 2077",
-    genre: "RPG",
-    platform: "pc",
-    type: "Paid",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg",
-    description: "Explore Night City in a story-driven open-world role-playing game.",
-    store: "https://store.steampowered.com/app/1091500/",
-    support: "https://support.cdprojektred.com/",
-    minimum: "Windows 10 64-bit; 12 GB RAM; DirectX 12 compatible GPU; SSD required.",
-    recommended: "Windows 10/11 64-bit; 16 GB RAM or more; stronger dedicated GPU; SSD."
-  },
-  {
-    id: "eldenring",
-    name: "Elden Ring",
-    genre: "RPG",
-    platform: "pc",
-    type: "Paid",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg",
-    description: "Explore a vast fantasy world, discover secrets and face challenging enemies.",
-    store: "https://store.steampowered.com/app/1245620/",
-    support: "https://support.bandainamcoent.com/",
-    minimum: "Windows 10; 12 GB RAM; GTX 1060 3 GB or RX 580 4 GB class GPU.",
-    recommended: "Windows 10/11; 16 GB RAM; GTX 1070 8 GB or RX Vega 56 class GPU."
-  },
-  {
-    id: "pubg",
-    name: "PUBG: Battlegrounds",
-    genre: "Battle Royale",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/578080/header.jpg",
-    description: "Battle royale survival: collect gear, outlast rivals and fight to be the last player standing.",
-    store: "https://store.steampowered.com/app/578080/",
-    support: "https://support.pubg.com/",
-    minimum: "Windows 10 64-bit; 8 GB RAM; GTX 960 2 GB or RX 560 2 GB class GPU.",
-    recommended: "Windows 10/11 64-bit; 16 GB RAM; GTX 1060 3 GB or RX 580 4 GB class GPU."
-  },
-  {
-    id: "apex",
-    name: "Apex Legends",
-    genre: "Battle Royale",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg",
-    description: "Team-based battle royale featuring unique Legends and fast-paced combat.",
-    store: "https://store.steampowered.com/app/1172470/",
-    support: "https://help.ea.com/",
-    minimum: "Windows 10 64-bit; 6 GB RAM; GTX 950 or Radeon HD 7790 class GPU.",
-    recommended: "Windows 10/11; 8 GB RAM or more; GTX 970 or R9 290 class GPU."
-  },
-  {
-    id: "forza5",
-    name: "Forza Horizon 5",
-    genre: "Racing",
-    platform: "pc",
-    type: "Paid",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg",
-    description: "Race across a colourful open-world version of Mexico in a huge car collection.",
-    store: "https://store.steampowered.com/app/1551360/",
-    support: "https://support.forzamotorsport.net/",
-    minimum: "Windows 10 64-bit; 8 GB RAM; GTX 970 or RX 470 class GPU; SSD recommended.",
-    recommended: "Windows 10/11; 16 GB RAM; GTX 1070 or RX 590 class GPU."
-  },
-  {
-    id: "tf2",
-    name: "Team Fortress 2",
-    genre: "Shooter",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg",
-    description: "A classic team-based multiplayer shooter with distinctive classes and humour.",
-    store: "https://store.steampowered.com/app/440/",
-    support: "https://help.steampowered.com/",
-    minimum: "Windows 10; 4 GB RAM recommended for a smoother modern setup; basic DirectX-compatible GPU.",
-    recommended: "Windows 10/11; 8 GB RAM; modern integrated or dedicated graphics."
-  },
-  {
-    id: "warframe",
-    name: "Warframe",
-    genre: "Action",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/230410/header.jpg",
-    description: "Fast-paced cooperative sci-fi action with missions, weapons and customisation.",
-    store: "https://store.steampowered.com/app/230410/",
-    support: "https://support.warframe.com/",
-    minimum: "Windows 10 64-bit; DirectX 11 compatible graphics; check the current launcher requirements.",
-    recommended: "Windows 10/11 64-bit; 8–16 GB RAM; modern dedicated or capable integrated GPU."
-  }
-];
-
-/* Extra games for Deal Hunter */
-const dealGames = [
-  ...games,
-  {
-    id: "cs2",
-    name: "Counter-Strike 2",
-    genre: "Shooter",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/730/header.jpg",
-    description: "Competitive tactical multiplayer shooter with team-based rounds.",
-    store: "https://store.steampowered.com/app/730/"
-  },
-  {
-    id: "dota2",
-    name: "Dota 2",
-    genre: "Strategy",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/570/header.jpg",
-    description: "A deep competitive multiplayer online battle arena game.",
-    store: "https://store.steampowered.com/app/570/"
-  },
-  {
-    id: "destiny2",
-    name: "Destiny 2",
-    genre: "Shooter",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/1085660/header.jpg",
-    description: "Sci-fi action shooter with cooperative activities and competitive modes.",
-    store: "https://store.steampowered.com/app/1085660/"
-  },
-  {
-    id: "thewitcher3",
-    name: "The Witcher 3: Wild Hunt",
-    genre: "RPG",
-    platform: "pc",
-    type: "Paid",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/292030/header.jpg",
-    description: "A story-rich fantasy RPG set in a vast world full of quests and monsters.",
-    store: "https://store.steampowered.com/app/292030/"
-  },
-  {
-    id: "terraria",
-    name: "Terraria",
-    genre: "Adventure",
-    platform: "pc",
-    type: "Paid",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/105600/header.jpg",
-    description: "Explore, build, craft and fight in a 2D sandbox adventure.",
-    store: "https://store.steampowered.com/app/105600/"
-  },
-  {
-    id: "rocketleague",
-    name: "Rocket League",
-    genre: "Racing",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/252950/header.jpg",
-    description: "Football meets rocket-powered cars. Check the official publisher for PC access.",
-    store: "https://www.rocketleague.com/"
-  },
-  {
-    id: "fallguys",
-    name: "Fall Guys",
-    genre: "Action",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg",
-    description: "A colourful multiplayer obstacle-course game. Check the official publisher for current access.",
-    store: "https://www.fallguys.com/"
-  },
-  {
-    id: "thefinals",
-    name: "THE FINALS",
-    genre: "Shooter",
-    platform: "pc",
-    type: "Free",
-    image: "https://cdn.akamai.steamstatic.com/steam/apps/2073850/header.jpg",
-    description: "A fast-paced team shooter set in destructible virtual arenas.",
-    store: "https://store.steampowered.com/app/2073850/"
-  }
-];
-
-/* --------------------------------------------------
-   SHARED UTILITIES
--------------------------------------------------- */
-
-const $ = (selector) => document.querySelector(selector);
-const safeText = (value) => String(value ?? "");
+const $ = selector => document.querySelector(selector);
 
 function escapeHTML(value) {
-  return safeText(value).replace(/[&<>"']/g, char => ({
-    "&": "&amp;",
-    "<": "&lt;",
-    ">": "&gt;",
-    '"': "&quot;",
-    "'": "&#39;"
-  })[char]);
+  return String(value ?? "").replace(/[&<>"']/g, char => ({
+    "&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"
+  }[char]));
 }
 
 function safeUrl(value) {
   try {
-    const url = new URL(value);
-    return ["http:", "https:"].includes(url.protocol) ? url.href : "#";
+    const url = new URL(value, location.href);
+    return ["https:","http:"].includes(url.protocol) ? url.href : "#";
   } catch {
     return "#";
   }
 }
 
-function imageFallback(img) {
-  img.onerror = null;
-  img.src = "https://placehold.co/640x360/20231e/c7ff4f?text=GameScope%2B";
-}
+const games = [
+  {id:"gta-v",name:"Grand Theft Auto V",genre:"Action",platform:"PC",description:"Explore Los Santos in the open-world action game.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/271590/header.jpg",store:"https://store.steampowered.com/app/271590/",support:"https://support.rockstargames.com/",minimum:"Check the official store for current requirements.",recommended:"Check the official store for current requirements."},
+  {id:"cyberpunk",name:"Cyberpunk 2077",genre:"RPG",platform:"PC",description:"An open-world RPG set in Night City.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/1091500/header.jpg",store:"https://store.steampowered.com/app/1091500/",support:"https://support.cdprojektred.com/",minimum:"Check the official store for current requirements.",recommended:"Check the official store for current requirements."},
+  {id:"elden-ring",name:"Elden Ring",genre:"RPG",platform:"PC",description:"Explore a mysterious fantasy world and face formidable enemies.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/1245620/header.jpg",store:"https://store.steampowered.com/app/1245620/",support:"https://www.bandainamcoent.com/support",minimum:"Check the official store for current requirements.",recommended:"Check the official store for current requirements."},
+  {id:"pubg",name:"PUBG: Battlegrounds",genre:"Battle Royale",platform:"PC",description:"Compete to be the last player or squad standing.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg",store:"https://store.steampowered.com/app/578080/",support:"https://support.pubg.com/",minimum:"Check the official store for current requirements.",recommended:"Check the official store for current requirements."},
+  {id:"apex",name:"Apex Legends",genre:"Battle Royale",platform:"PC",description:"A free-to-play hero shooter with squad-based combat.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/1172470/header.jpg",store:"https://store.steampowered.com/app/1172470/",support:"https://help.ea.com/",minimum:"Check the official store for current requirements.",recommended:"Check the official store for current requirements."},
+  {id:"forza",name:"Forza Horizon 5",genre:"Racing",platform:"PC",description:"Race across an expansive open-world version of Mexico.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/1551360/header.jpg",store:"https://store.steampowered.com/app/1551360/",support:"https://support.forzamotorsport.net/",minimum:"Check the official store for current requirements.",recommended:"Check the official store for current requirements."},
+  {id:"tf2",name:"Team Fortress 2",genre:"FPS",platform:"PC",description:"A classic team-based multiplayer shooter.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/440/header.jpg",store:"https://store.steampowered.com/app/440/",support:"https://help.steampowered.com/",minimum:"Check the official store for current requirements.",recommended:"Check the official store for current requirements."},
+  {id:"warframe",name:"Warframe",genre:"Action",platform:"PC",description:"A free online action game with fast-paced combat.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/230410/header.jpg",store:"https://store.steampowered.com/app/230410/",support:"https://support.warframe.com/",minimum:"Check the official store for current requirements.",recommended:"Check the official store for current requirements."}
+];
 
-/* --------------------------------------------------
-   MAIN GAME LIBRARY
--------------------------------------------------- */
+const freeGames = [
+  {id:"free-cs2",name:"Counter-Strike 2",genre:"FPS",description:"Competitive tactical multiplayer shooter.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/730/header.jpg",store:"https://store.steampowered.com/app/730/"},
+  {id:"free-warframe",name:"Warframe",genre:"Action",description:"Fast-paced cooperative sci-fi action.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/230410/header.jpg",store:"https://store.steampowered.com/app/230410/"},
+  {id:"free-pubg",name:"PUBG: Battlegrounds",genre:"Battle Royale",description:"Drop in and compete for survival.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/578080/header.jpg",store:"https://store.steampowered.com/app/578080/"},
+  {id:"free-tf2",name:"Team Fortress 2",genre:"FPS",description:"Team-based multiplayer action.",image:"https://cdn.cloudflare.steamstatic.com/steam/apps/440/header.jpg",store:"https://store.steampowered.com/app/440/"}
+];
 
-function renderGames() {
-  const query = $("#gameSearch").value.trim().toLowerCase();
-  const platform = $("#platformFilter").value;
-  const genre = $("#genreFilter").value;
-
-  const filtered = games.filter(game => {
-    const matchesQuery = game.name.toLowerCase().includes(query);
-    const matchesPlatform = platform === "all" || game.platform === platform;
-    const matchesGenre = genre === "all" || game.genre === genre;
-    return matchesQuery && matchesPlatform && matchesGenre;
-  });
-
-  $("#gameCount").textContent = `${filtered.length} GAME${filtered.length === 1 ? "" : "S"}`;
-
-  if (!filtered.length) {
-    $("#gameGrid").innerHTML = '<div class="empty-state">No games found. Try another search or filter.</div>';
-    return;
-  }
-
-  $("#gameGrid").innerHTML = filtered.map(game => `
-    <article class="game-card">
-      <div class="game-cover">
-        <img src="${escapeHTML(game.image)}" alt="${escapeHTML(game.name)} cover"
-             loading="lazy" onerror="imageFallback(this)">
-        <span class="pill">${game.type === "Free" ? "FREE TO PLAY" : "PAID GAME"}</span>
-      </div>
-      <div class="game-card-body">
-        <h3>${escapeHTML(game.name)}</h3>
-        <div class="game-meta">
-          <span>${escapeHTML(game.genre)}</span>
-          <span>PC</span>
-        </div>
-        <p>${escapeHTML(game.description)}</p>
-        <div class="card-actions">
-          <button class="btn small-btn" onclick="openGame('${game.id}')">Details</button>
-          <a class="btn primary small-btn" href="${safeUrl(game.store)}"
-             target="_blank" rel="noopener noreferrer">Store ↗</a>
-        </div>
-      </div>
-    </article>
-  `).join("");
-}
-
-$("#gameSearch").addEventListener("input", renderGames);
-$("#platformFilter").addEventListener("change", renderGames);
-$("#genreFilter").addEventListener("change", renderGames);
-
-/* --------------------------------------------------
-   DEAL HUNTER + LOCAL WISHLIST
--------------------------------------------------- */
-
-const WISHLIST_KEY = "gamescope_plus_wishlist_v1";
-let activeDealTab = "all";
-let wishlist = loadWishlist();
-
-function loadWishlist() {
-  try {
-    const saved = JSON.parse(localStorage.getItem(WISHLIST_KEY) || "[]");
-    return Array.isArray(saved) ? saved.filter(id => typeof id === "string") : [];
-  } catch {
-    return [];
-  }
-}
+let wishlist = [];
+try {
+  const saved = JSON.parse(localStorage.getItem("gamescopeWishlist") || "[]");
+  if (Array.isArray(saved)) wishlist = saved;
+} catch {}
 
 function saveWishlist() {
   try {
-    localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishlist));
-  } catch {
-    alert("Your browser could not save the wishlist. Check browser storage settings.");
-  }
-  updateWishlistCount();
-}
-
-function updateWishlistCount() {
-  $("#wishlistCount").textContent = wishlist.length;
+    localStorage.setItem("gamescopeWishlist", JSON.stringify(wishlist));
+  } catch {}
 }
 
 function toggleWishlist(id) {
-  if (wishlist.includes(id)) {
-    wishlist = wishlist.filter(item => item !== id);
-  } else {
-    wishlist.push(id);
-  }
+  wishlist = wishlist.includes(id) ? wishlist.filter(item => item !== id) : [...wishlist,id];
   saveWishlist();
+  renderGames();
   renderDeals();
+  renderFreeGames();
+  const currentModalGame = games.find(game => game.id === id);
+  if (currentModalGame && $("#gameModal").classList.contains("open")) openGame(id);
 }
-
-function setDealTab(tab) {
-  activeDealTab = tab;
-  document.querySelectorAll("[data-deal-tab]").forEach(button => {
-    button.classList.toggle("active", button.dataset.dealTab === tab);
-  });
-  renderDeals();
-}
-
-window.setDealTab = setDealTab;
-
-document.querySelectorAll("[data-deal-tab]").forEach(button => {
-  button.addEventListener("click", () => setDealTab(button.dataset.dealTab));
-});
-
-function renderDeals() {
-  const query = $("#dealSearch").value.trim().toLowerCase();
-  const genre = $("#dealGenre").value;
-  const sort = $("#dealSort").value;
-
-  let filtered = dealGames.filter(game => {
-    const matchesQuery = game.name.toLowerCase().includes(query);
-    const matchesGenre = genre === "all" || game.genre === genre;
-    const matchesTab =
-      activeDealTab === "all" ||
-      (activeDealTab === "free" && game.type === "Free") ||
-      (activeDealTab === "wishlist" && wishlist.includes(game.id));
-
-    return matchesQuery && matchesGenre && matchesTab;
-  });
-
-  filtered.sort((a, b) => {
-    if (sort === "free" && a.type !== b.type) {
-      return a.type === "Free" ? -1 : 1;
-    }
-    return a.name.localeCompare(b.name);
-  });
-
-  if (!filtered.length) {
-    const message = activeDealTab === "wishlist"
-      ? "Your wishlist is empty (or no saved games match these filters). Add games using the ♥ button."
-      : "No games found. Try another search or filter.";
-    $("#dealGrid").innerHTML = `<div class="empty-state">${escapeHTML(message)}</div>`;
-    return;
-  }
-
-  $("#dealGrid").innerHTML = filtered.map(game => {
-    const saved = wishlist.includes(game.id);
-    const priceLabel = game.type === "Free" ? "Free to play" : "Check current price";
-
-    return `
-      <article class="game-card">
-        <div class="game-cover">
-          <img src="${escapeHTML(game.image)}" alt="${escapeHTML(game.name)} cover"
-               loading="lazy" onerror="imageFallback(this)">
-          <span class="pill">${game.type === "Free" ? "FREE TO PLAY" : "PRICE CHECK"}</span>
-        </div>
-        <div class="game-card-body">
-          <h3>${escapeHTML(game.name)}</h3>
-          <div class="game-meta">
-            <span>${escapeHTML(game.genre)}</span>
-            <span>PC</span>
-          </div>
-          <p>${escapeHTML(game.description)}</p>
-          <div class="deal-price">${priceLabel}</div>
-          <div class="card-actions" style="margin-top:12px">
-            <a class="btn primary small-btn" href="${safeUrl(game.store)}"
-               target="_blank" rel="noopener noreferrer">Check store ↗</a>
-            <button class="btn small-btn wishlist-btn ${saved ? "saved" : ""}"
-                    onclick="toggleWishlist('${game.id}')"
-                    aria-label="${saved ? "Remove from" : "Add to"} wishlist"
-                    title="${saved ? "Remove from wishlist" : "Add to wishlist"}">
-              ${saved ? "♥" : "♡"}
-            </button>
-          </div>
-        </div>
-      </article>
-    `;
-  }).join("");
-}
-
 window.toggleWishlist = toggleWishlist;
 
-$("#dealSearch").addEventListener("input", renderDeals);
-$("#dealGenre").addEventListener("change", renderDeals);
-$("#dealSort").addEventListener("change", renderDeals);
+function imageFallback(img) {
+  img.style.display = "none";
+  const parent = img.parentElement;
+  if (parent) {
+    parent.style.background = "linear-gradient(140deg,#29352a,#131713)";
+    parent.insertAdjacentHTML("beforeend", '<div style="position:absolute;inset:0;display:grid;place-items:center;font-size:42px">🎮</div>');
+  }
+}
+window.imageFallback = imageFallback;
 
-/* --------------------------------------------------
-   GAME DETAILS MODAL
--------------------------------------------------- */
+function gameCard(game, options = {}) {
+  const saved = wishlist.includes(game.id);
+  const showWishlist = options.wishlist !== false;
+  return `<article class="card">
+    <div class="cover">
+      <img src="${escapeHTML(game.image || "")}" alt="${escapeHTML(game.name)} cover" loading="lazy" onerror="imageFallback(this)">
+      <span class="pill">${escapeHTML(game.genre || "PC GAME")}</span>
+    </div>
+    <div class="card-body">
+      <h3>${escapeHTML(game.name)}</h3>
+      <div class="meta"><span>${escapeHTML(game.genre || "PC")}</span><span>${escapeHTML(game.platform || "PC")}</span></div>
+      <p>${escapeHTML(game.description || "Explore this game and check the official store for details.")}</p>
+      <div class="actions">
+        <a class="btn primary small" href="${safeUrl(game.store)}" target="_blank" rel="noopener noreferrer">Official store ↗</a>
+        ${showWishlist ? `<button class="btn small save ${saved ? "saved" : ""}" onclick="toggleWishlist('${escapeHTML(game.id)}')" aria-label="${saved ? "Remove from" : "Add to"} wishlist">${saved ? "♥" : "♡"}</button>` : ""}
+        ${options.details ? `<button class="btn small" onclick="openGame('${escapeHTML(game.id)}')">Details</button>` : ""}
+      </div>
+    </div>
+  </article>`;
+}
+
+function renderGames() {
+  const query = $("#gameSearch").value.trim().toLowerCase();
+  const genre = $("#gameGenre").value;
+  const platform = $("#gamePlatform").value;
+  const filtered = games.filter(game =>
+    game.name.toLowerCase().includes(query) &&
+    (genre === "all" || game.genre === genre) &&
+    (platform === "all" || game.platform === platform)
+  );
+  $("#gameGrid").innerHTML = filtered.length
+    ? filtered.map(game => gameCard(game,{details:true})).join("")
+    : '<div class="empty">No games found. Try another search or filter.</div>';
+}
+
+function renderFreeGames() {
+  $("#freeGrid").innerHTML = freeGames.map(game => gameCard({...game,platform:"PC"},{wishlist:true})).join("");
+}
 
 function openGame(id) {
   const game = games.find(item => item.id === id);
   if (!game) return;
-
   $("#modalTitle").textContent = game.name;
   $("#modalDescription").textContent = game.description;
-  $("#modalMinimum").textContent = game.minimum || "Check the official store for current requirements.";
-  $("#modalRecommended").textContent = game.recommended || "Check the official store for current requirements.";
-
+  $("#modalMinimum").textContent = game.minimum;
+  $("#modalRecommended").textContent = game.recommended;
   $("#modalLinks").innerHTML = `
-    <a class="btn primary" href="${safeUrl(game.store)}"
-       target="_blank" rel="noopener noreferrer">Official store ↗</a>
-    <a class="btn" href="${safeUrl(game.support)}"
-       target="_blank" rel="noopener noreferrer">Official support ↗</a>
-    <button class="btn" onclick="toggleWishlist('${game.id}')">
-      ${wishlist.includes(game.id) ? "♥ Saved" : "♡ Add to wishlist"}
-    </button>
-  `;
-
+    <a class="btn primary" href="${safeUrl(game.store)}" target="_blank" rel="noopener noreferrer">Official store ↗</a>
+    <a class="btn" href="${safeUrl(game.support)}" target="_blank" rel="noopener noreferrer">Official support ↗</a>
+    <button class="btn" onclick="toggleWishlist('${escapeHTML(game.id)}')">${wishlist.includes(game.id) ? "♥ Saved" : "♡ Add to wishlist"}</button>`;
   $("#gameModal").classList.add("open");
   document.body.style.overflow = "hidden";
   $("#closeModal").focus();
 }
-
 window.openGame = openGame;
 
 function closeModal() {
   $("#gameModal").classList.remove("open");
   document.body.style.overflow = "";
 }
-
-$("#closeModal").addEventListener("click", closeModal);
-$("#gameModal").addEventListener("click", event => {
+$("#closeModal").addEventListener("click",closeModal);
+$("#gameModal").addEventListener("click",event => {
   if (event.target === $("#gameModal")) closeModal();
 });
-document.addEventListener("keydown", event => {
+document.addEventListener("keydown",event => {
   if (event.key === "Escape") closeModal();
 });
 
-/* --------------------------------------------------
-   MOBILE NAVIGATION
--------------------------------------------------- */
+$("#gameSearch").addEventListener("input",renderGames);
+$("#gameGenre").addEventListener("change",renderGames);
+$("#gamePlatform").addEventListener("change",renderGames);
 
-$("#menuToggle").addEventListener("click", () => {
-  const nav = $("#mainNav");
-  const open = nav.classList.toggle("open");
-  $("#menuToggle").setAttribute("aria-expanded", String(open));
-});
+/* LIVE DEAL HUNTER — CHEAPSHARK API */
+const CHEAPSHARK_API = "https://www.cheapshark.com/api/1.0";
+let liveDeals = [];
+let activeDealTab = "all";
+let dealsLoading = false;
 
-$("#mainNav").querySelectorAll("a").forEach(link => {
-  link.addEventListener("click", () => {
-    $("#mainNav").classList.remove("open");
-    $("#menuToggle").setAttribute("aria-expanded", "false");
-  });
-});
-
-/* --------------------------------------------------
-   GAMING NEWS
-   RSS2JSON provides RSS-to-JSON conversion.
--------------------------------------------------- */
-
-const NEWS_FEEDS = [
-  {
-    name: "PC Gamer",
-    url: "https://www.pcgamer.com/feeds/all/"
-  },
-  {
-    name: "IGN",
-    url: "https://feeds.feedburner.com/ign/all"
-  }
-];
-
-const gamingKeywords = [
-  "game", "gaming", "gamer", "pc gaming", "video game", "videogame",
-  "playstation", "xbox", "nintendo", "steam", "epic games",
-  "gpu", "graphics card", "rtx", "radeon", "geforce",
-  "grand theft auto", "gta", "cyberpunk", "elden ring",
-  "fortnite", "minecraft", "roblox", "pubg", "apex legends",
-  "call of duty", "battlefield", "valorant", "counter-strike",
-  "overwatch", "warframe", "forza", "resident evil",
-  "final fantasy", "the witcher", "assassin's creed",
-  "gaming pc", "game pass", "nvidia", "amd", "esports",
-  "patch notes", "game update", "early access", "dlc",
-  "playstation plus", "xbox game pass", "steam deck",
-  "game developer", "game studio", "video game"
-];
-
-const nonGamingKeywords = [
-  "movie trailer", "film trailer", "box office", "tv series",
-  "television series", "anime episode", "movie review",
-  "film review", "netflix series", "celebrity interview",
-  "streaming series", "season finale"
-];
-
-function cleanText(value) {
-  const div = document.createElement("div");
-  div.innerHTML = safeText(value);
-  return (div.textContent || div.innerText || "")
-    .replace(/\s+/g, " ")
-    .trim();
+function moneyUSD(value) {
+  const number = Number(value);
+  return Number.isFinite(number) ? "$" + number.toFixed(2) : "Price unavailable";
 }
 
-function isGamingNews(item) {
-  const text = `${item.title || ""} ${item.description || ""} ${item.content || ""}`.toLowerCase();
-  const hasGamingTerm = gamingKeywords.some(keyword => text.includes(keyword));
-  const hasNonGamingTerm = nonGamingKeywords.some(keyword => text.includes(keyword));
+function dealCard(deal) {
+  const saved = wishlist.includes(deal.id);
+  const sale = Number(deal.salePrice);
+  const normal = Number(deal.normalPrice);
+  const savings = Number(deal.savings);
+  const isFree = Number.isFinite(sale) && sale === 0;
+  const discount = Number.isFinite(savings) ? Math.max(0,Math.min(100,savings)) : 0;
+  const image = deal.thumb || "";
+  const dealUrl = deal.dealID
+    ? "https://www.cheapshark.com/redirect?dealID=" + encodeURIComponent(deal.dealID)
+    : "https://www.cheapshark.com/";
 
-  return hasGamingTerm && !hasNonGamingTerm;
-}
-
-function safeImageUrl(value) {
-  if (!value) return "";
-  try {
-    const url = new URL(value);
-    return ["http:", "https:"].includes(url.protocol) ? url.href : "";
-  } catch {
-    return "";
-  }
-}
-
-function articleImage(item) {
-  if (item.thumbnail) {
-    const thumb = safeImageUrl(item.thumbnail);
-    if (thumb) return thumb;
-  }
-
-  if (Array.isArray(item.enclosure) && item.enclosure[0]?.link) {
-    const enclosure = safeImageUrl(item.enclosure[0].link);
-    if (enclosure) return enclosure;
-  }
-
-  if (item.enclosure?.link) {
-    const enclosure = safeImageUrl(item.enclosure.link);
-    if (enclosure) return enclosure;
-  }
-
-  const content = item.content || item.description || "";
-  const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
-  return match ? safeImageUrl(match[1]) : "";
-}
-
-function formatDate(value) {
-  if (!value) return "Latest";
-  const date = new Date(value);
-  if (Number.isNaN(date.getTime())) return "Latest";
-  return date.toLocaleDateString(undefined, {
-    month: "short",
-    day: "numeric"
-  });
-}
-
-function makeNewsCard(item, source) {
-  const title = cleanText(item.title || "Gaming news");
-  const description = cleanText(item.description || item.content || "");
-  const url = safeUrl(item.link);
-  const image = articleImage(item);
-  const date = formatDate(item.pubDate || item.published || item.isoDate);
-
-  return `
-    <article class="news-card">
-      <a href="${url}" target="_blank" rel="noopener noreferrer"
-         aria-label="Read ${escapeHTML(title)}">
-        <img src="${escapeHTML(image || "https://placehold.co/640x360/20231e/c7ff4f?text=Gaming+News")}"
-             alt="" loading="lazy" onerror="imageFallback(this)">
-      </a>
-      <div class="news-card-body">
-        <div class="news-source">${escapeHTML(source)}</div>
-        <h3><a href="${url}" target="_blank" rel="noopener noreferrer">${escapeHTML(title)}</a></h3>
-        <div class="news-date">${escapeHTML(date)}</div>
-        ${description ? `<p class="small">${escapeHTML(description.slice(0, 105))}${description.length > 105 ? "…" : ""}</p>` : ""}
+  return `<article class="card">
+    <div class="cover">
+      <img src="${escapeHTML(image)}" alt="${escapeHTML(deal.title)} cover" loading="lazy" onerror="imageFallback(this)">
+      <span class="pill">${isFree ? "FREE / $0" : discount.toFixed(0) + "% OFF"}</span>
+    </div>
+    <div class="card-body">
+      <h3>${escapeHTML(deal.title)}</h3>
+      <div class="meta"><span>${escapeHTML(deal.storeName || "Supported store")}</span><span>PC</span></div>
+      <p>${escapeHTML(deal.steamRatingText || "Current offer from a supported store.")}${deal.dealRating ? " · Deal rating " + escapeHTML(deal.dealRating) : ""}</p>
+      <div class="price">${moneyUSD(sale)} ${Number.isFinite(normal) && normal > sale ? `<span class="old-price">${moneyUSD(normal)}</span>` : ""}</div>
+      <div class="small-note">Price returned by CheapShark · USD</div>
+      <div class="actions">
+        <a class="btn primary small" href="${safeUrl(dealUrl)}" target="_blank" rel="noopener noreferrer">View deal ↗</a>
+        <button class="btn small save ${saved ? "saved" : ""}" onclick="toggleWishlist('${escapeHTML(deal.id)}')" aria-label="${saved ? "Remove from" : "Add to"} wishlist">${saved ? "♥" : "♡"}</button>
       </div>
-    </article>
-  `;
+    </div>
+  </article>`;
 }
 
-async function fetchFeed(feed) {
-  const endpoint = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feed.url);
-  const response = await fetch(endpoint);
-  if (!response.ok) throw new Error("News feed request failed");
-  const data = await response.json();
-  if (data.status !== "ok" || !Array.isArray(data.items)) {
-    throw new Error("News feed format not available");
+function renderDeals() {
+  const query = $("#dealSearch").value.trim().toLowerCase();
+  const type = $("#dealGenre").value;
+  const sort = $("#dealSort").value;
+
+  let filtered = liveDeals.filter(deal => {
+    const matchesQuery = String(deal.title || "").toLowerCase().includes(query);
+    const matchesType = type === "all" ||
+      (type === "free" && Number(deal.salePrice) === 0) ||
+      (type === "paid" && Number(deal.salePrice) > 0);
+    const matchesTab = activeDealTab === "all" ||
+      (activeDealTab === "free" && Number(deal.salePrice) === 0) ||
+      (activeDealTab === "wishlist" && wishlist.includes(deal.id));
+    return matchesQuery && matchesType && matchesTab;
+  });
+
+  filtered.sort((a,b) => {
+    if (sort === "price") return Number(a.salePrice) - Number(b.salePrice);
+    if (sort === "savings") return Number(b.savings) - Number(a.savings);
+    if (sort === "name") return String(a.title).localeCompare(String(b.title));
+    return Number(b.dealRating || 0) - Number(a.dealRating || 0);
+  });
+
+  $("#dealStatus").textContent = dealsLoading
+    ? "Loading current deals…"
+    : liveDeals.length
+      ? `${filtered.length} deal${filtered.length === 1 ? "" : "s"} shown · ${liveDeals.length} offers loaded from CheapShark.`
+      : "No live deals loaded yet. Check your internet connection and refresh.";
+
+  if (!filtered.length) {
+    $("#dealGrid").innerHTML = `<div class="empty">${activeDealTab === "wishlist" ? "No saved deals match your search. Add games using the ♡ button." : "No deals match these filters. Try another search or refresh."}</div>`;
+    return;
   }
-  return data.items.map(item => ({ ...item, _source: feed.name }));
+  $("#dealGrid").innerHTML = filtered.map(dealCard).join("");
+}
+
+async function loadLiveDeals() {
+  if (dealsLoading) return;
+  dealsLoading = true;
+  $("#dealStatus").textContent = "Loading current offers from CheapShark…";
+  $("#dealGrid").innerHTML = '<div class="empty">Fetching live deals…</div>';
+  try {
+    const url = CHEAPSHARK_API + "/deals?pageSize=60&sortBy=Deal%20Rating";
+    const response = await fetch(url);
+    if (!response.ok) throw new Error("The deals API returned an error.");
+    const data = await response.json();
+    if (!Array.isArray(data)) throw new Error("Unexpected API response.");
+
+    liveDeals = data.map(deal => ({
+      id:"cheapshark-" + deal.dealID,
+      dealID:deal.dealID,
+      title:deal.title,
+      storeName:deal.storeID ? "Store ID " + deal.storeID : "CheapShark store",
+      salePrice:deal.salePrice,
+      normalPrice:deal.normalPrice,
+      savings:deal.savings,
+      dealRating:deal.dealRating,
+      thumb:deal.thumb,
+      steamRatingText:deal.steamRatingText,
+      steamRatingPercent:deal.steamRatingPercent
+    }));
+    $("#dealStatus").classList.remove("error");
+  } catch (error) {
+    $("#dealStatus").classList.add("error");
+    $("#dealStatus").textContent = "Could not load live deals. The service may be temporarily unavailable; please try again.";
+    $("#dealGrid").innerHTML = '<div class="empty">Live deals are unavailable right now. You can still browse the game library and free games.</div>';
+    liveDeals = [];
+  } finally {
+    dealsLoading = false;
+    renderDeals();
+  }
+}
+
+$("#dealSearch").addEventListener("input",renderDeals);
+$("#dealGenre").addEventListener("change",renderDeals);
+$("#dealSort").addEventListener("change",renderDeals);
+$("#refreshDeals").addEventListener("click",loadLiveDeals);
+
+$("#dealTabs").addEventListener("click",event => {
+  const button = event.target.closest("[data-tab]");
+  if (!button) return;
+  activeDealTab = button.dataset.tab;
+  $("#dealTabs").querySelectorAll(".tab").forEach(tab => tab.classList.toggle("active",tab === button));
+  renderDeals();
+});
+
+/* NEWS FEEDS */
+function stripHTML(value) {
+  const element = document.createElement("div");
+  element.innerHTML = String(value || "");
+  return (element.textContent || element.innerText || "").trim();
+}
+
+function validGamingHeadline(item) {
+  const title = stripHTML(item.title || "").toLowerCase();
+  const text = stripHTML(item.description || item.content || "").toLowerCase();
+  const combined = title + " " + text;
+
+  if (!title) return false;
+  if (/\b(anime|manga|netflix series|movie review|film review|tv review|season finale)\b/i.test(title)) return false;
+
+  const gamingWords = /\b(game|gaming|gamer|pc|playstation|xbox|nintendo|steam|epic games|video game|videogame|dlc|patch|update|mod|esports|esport|gameplay|gpu|graphics card|rpg|fps|battle royale|fortnite|minecraft|elden ring|cyberpunk|grand theft auto|gta|resident evil|call of duty|valorant|counter-strike|starfield|pokemon|pokémon|zelda|playstation 5|ps5|xbox series)\b/i;
+  return gamingWords.test(title) || (gamingWords.test(title) && gamingWords.test(combined));
+}
+
+function newsCard(item) {
+  const title = stripHTML(item.title || "Gaming news");
+  const description = stripHTML(item.description || item.content || "Open the source to read the full story.");
+  const url = safeUrl(item.link || item.url || "https://www.pcgamer.com/");
+  const date = item.pubDate ? new Date(item.pubDate) : null;
+  const dateText = date && !Number.isNaN(date.getTime()) ? date.toLocaleDateString() : "Latest";
+  return `<article class="card">
+    <div class="card-body">
+      <div class="meta"><span>GAMING NEWS</span><span>${escapeHTML(dateText)}</span></div>
+      <h3>${escapeHTML(title)}</h3>
+      <p>${escapeHTML(description.slice(0,170))}${description.length > 170 ? "…" : ""}</p>
+      <div class="actions"><a class="btn primary small" href="${url}" target="_blank" rel="noopener noreferrer">Read story ↗</a></div>
+    </div>
+  </article>`;
 }
 
 async function loadNews() {
-  const grid = $("#newsGrid");
-  const status = $("#newsStatus");
+  $("#newsStatus").classList.remove("error");
+  $("#newsStatus").textContent = "Loading gaming news…";
+  const feeds = [
+    "https://www.pcgamer.com/rss/",
+    "https://www.ign.com/rss/v2/articles/feed"
+  ];
+  const collected = [];
 
-  try {
-    const results = await Promise.allSettled(NEWS_FEEDS.map(fetchFeed));
-    const articles = results
-      .filter(result => result.status === "fulfilled")
-      .flatMap(result => result.value)
-      .filter(isGamingNews);
-
-    const unique = [];
-    const seen = new Set();
-
-    for (const article of articles) {
-      const title = cleanText(article.title).toLowerCase();
-      if (!title || seen.has(title)) continue;
-      seen.add(title);
-      unique.push(article);
-    }
-
-    unique.sort((a, b) => {
-      const dateA = new Date(a.pubDate || a.published || a.isoDate || 0).getTime() || 0;
-      const dateB = new Date(b.pubDate || b.published || b.isoDate || 0).getTime() || 0;
-      return dateB - dateA;
-    });
-
-    const latest = unique.slice(0, 4);
-
-    if (latest.length) {
-      grid.innerHTML = latest.map(item => makeNewsCard(item, item._source)).join("");
-      status.textContent = "Gaming headlines from external RSS feeds. Select a story to read it at its original source.";
-    } else {
-      grid.innerHTML = '<div class="empty-state">Gaming news is temporarily unavailable. Try again later.</div>';
-      status.textContent = "No gaming headlines could be loaded right now.";
-    }
-  } catch (error) {
-    grid.innerHTML = '<div class="empty-state">News could not be loaded. You can still browse games and Deal Hunter below.</div>';
-    status.textContent = "The external news service may be unavailable or temporarily rate-limited.";
+  for (const feed of feeds) {
+    try {
+      const endpoint = "https://api.rss2json.com/v1/api.json?rss_url=" + encodeURIComponent(feed);
+      const response = await fetch(endpoint);
+      if (!response.ok) continue;
+      const data = await response.json();
+      if (data.status === "ok" && Array.isArray(data.items)) {
+        collected.push(...data.items.filter(validGamingHeadline));
+      }
+    } catch {}
   }
+
+  const unique = [];
+  const seen = new Set();
+  for (const item of collected) {
+    const key = stripHTML(item.title).toLowerCase();
+    if (!seen.has(key)) {
+      seen.add(key);
+      unique.push(item);
+    }
+  }
+
+  unique.sort((a,b) => new Date(b.pubDate || 0) - new Date(a.pubDate || 0));
+  const results = unique.slice(0,8);
+
+  if (!results.length) {
+    $("#newsStatus").classList.add("error");
+    $("#newsStatus").textContent = "Gaming news could not be loaded. Open a publisher directly below.";
+    $("#newsGrid").innerHTML = `
+      <article class="card"><div class="card-body"><h3>PC Gamer</h3><p>PC gaming news, reviews and updates.</p><a class="btn" href="https://www.pcgamer.com/" target="_blank" rel="noopener noreferrer">Visit PC Gamer ↗</a></div></article>
+      <article class="card"><div class="card-body"><h3>IGN</h3><p>Gaming news, reviews and videos.</p><a class="btn" href="https://www.ign.com/" target="_blank" rel="noopener noreferrer">Visit IGN ↗</a></div></article>`;
+    return;
+  }
+
+  $("#newsStatus").textContent = `${results.length} recent gaming headlines loaded.`;
+  $("#newsGrid").innerHTML = results.map(newsCard).join("");
 }
 
-/* --------------------------------------------------
-   START
--------------------------------------------------- */
+$("#refreshNews").addEventListener("click",loadNews);
 
 $("#year").textContent = new Date().getFullYear();
 renderGames();
-updateWishlistCount();
+renderFreeGames();
 renderDeals();
+loadLiveDeals();
 loadNews();
 </script>
-
 </body>
 </html>
