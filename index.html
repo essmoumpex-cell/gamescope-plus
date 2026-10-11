@@ -3,193 +3,213 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>GameScope+ — Your Gaming Universe</title>
-<meta name="description" content="Gaming news, free games, guides, game reviews and PC and console deals.">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090b10">
+<title>GameScope+ | Discover Your Next Game</title>
+<meta name="description" content="Discover video games, explore free-to-play titles and find official game pages, deals and troubleshooting help.">
 <style>
-:root{--bg:#0a0b10;--panel:#141620;--muted:#a4a8b8;--lime:#c6ff45;--line:#292c39}
+:root{--bg:#090b10;--panel:#121620;--line:#252b38;--text:#f5f7fb;--muted:#9ba5b6;--green:#b7ff42;--purple:#a78bfa}
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:#f7f7fb;font-family:Arial,sans-serif}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Arial,sans-serif}
 a{color:inherit;text-decoration:none}
-header{height:auto;min-height:76px;padding:18px 6%;display:flex;align-items:center;justify-content:space-between;gap:20px;border-bottom:1px solid var(--line);flex-wrap:wrap}
-.logo{font-size:27px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--lime)}
-nav{display:flex;gap:22px;flex-wrap:wrap;font-size:14px;color:#d2d4df}
-nav a:hover{color:var(--lime)}
-.wrap{width:90%;max-width:1240px;margin:auto}
-.hero{margin:30px 0;position:relative;min-height:400px;border-radius:15px;overflow:hidden;background:#20212b}
-.hero img{position:absolute;width:100%;height:100%;object-fit:cover;inset:0}
-.hero:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,#08090bf2,#08090b80 58%,transparent)}
-.heroText{position:relative;z-index:1;padding:70px 6%;max-width:670px}
-.tag{font-size:11px;font-weight:bold;letter-spacing:2px;color:var(--lime)}
-h1{font-size:clamp(38px,6vw,66px);line-height:1.02;margin:18px 0}
-.hero p{line-height:1.7;color:#d4d5df;max-width:470px}
-.btn{display:inline-block;margin-top:14px;background:var(--lime);color:#10120b;padding:13px 18px;border-radius:5px;font-weight:bold;font-size:13px}
-h2{font-size:26px;margin:36px 0 17px}
-.toolbar{display:flex;gap:9px;flex-wrap:wrap;margin:16px 0 22px}
-input{flex:1;min-width:210px;background:#151722;border:1px solid #333646;border-radius:6px;padding:13px;color:white}
-button{cursor:pointer;background:#171923;color:#ddd;border:1px solid #333646;border-radius:6px;padding:11px 15px}
-button.active,button:hover{background:var(--lime);color:#10120b;border-color:var(--lime)}
-.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px}
-.card{background:var(--panel);border:1px solid var(--line);border-radius:10px;overflow:hidden;transition:transform .2s}
-.card:hover{transform:translateY(-4px)}
-.card img{width:100%;height:155px;object-fit:cover;display:block;background:#252735}
-.info{padding:15px}.label{font-size:10px;color:var(--lime);font-weight:bold;letter-spacing:1px}
-h3{font-size:17px;margin:9px 0}
-.info p,.feature p{font-size:13px;line-height:1.6;color:var(--muted)}
-.smallLink{font-size:12px;color:var(--lime);font-weight:bold}
-.features{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:30px}
-.feature{padding:25px;border:1px solid var(--line);border-radius:10px;background:linear-gradient(135deg,#191c29,#101117)}
-.feature h2{margin:12px 0}
-.guides{display:grid;grid-template-columns:repeat(3,1fr);gap:13px;margin-bottom:45px}
-.guide{background:var(--panel);border:1px solid var(--line);padding:18px;border-radius:8px}
-.guide p{font-size:13px;color:var(--muted);line-height:1.5}
-footer{border-top:1px solid var(--line);padding:30px 6%;color:var(--muted);font-size:13px;line-height:1.8}
-@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.heroText{padding:55px 6%}}
-@media(max-width:560px){.wrap{width:92%}.grid,.features,.guides{grid-template-columns:1fr}.hero{min-height:400px}.heroText{padding:55px 22px}header{padding:18px 4%}nav{gap:13px}}
+button,input{font:inherit}
+header{position:sticky;top:0;z-index:10;background:#090b10ed;border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+.nav{max-width:1200px;margin:auto;padding:17px 22px;display:flex;align-items:center;justify-content:space-between;gap:18px}
+.logo{font-size:23px;font-weight:950;letter-spacing:-1px}.logo span{color:var(--green)}
+nav{display:flex;gap:22px;font-size:13px;color:var(--muted)}
+nav a:hover,.link:hover{color:var(--green)}
+.hero{max-width:1200px;margin:26px auto;padding:30px 22px}
+.hero-box{min-height:350px;padding:clamp(28px,6vw,72px);border:1px solid #343247;border-radius:22px;overflow:hidden;background:linear-gradient(90deg,#090b10 5%,#090b10e8 48%,#090b1050),url('https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg') center/cover}
+.eyebrow{color:var(--green);font-size:11px;letter-spacing:3px;font-weight:900}
+h1{font-size:clamp(42px,7vw,76px);line-height:.99;letter-spacing:-3px;margin:20px 0;max-width:650px}
+.hero p{max-width:530px;color:#c0c6d2;line-height:1.8}
+.btn{display:inline-block;background:var(--green);color:#10130a;padding:13px 19px;border:0;border-radius:8px;font-weight:900;font-size:12px;cursor:pointer}
+.btn:hover{filter:brightness(1.1)}
+main{max-width:1200px;margin:auto;padding:0 22px 70px}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:15px;margin:24px 0}
+h2{font-size:clamp(25px,4vw,36px);margin:8px 0;letter-spacing:-1px}
+.muted{color:var(--muted);font-size:13px;line-height:1.7}
+.searchbar{display:flex;gap:10px;margin:20px 0 13px}
+.searchbar input{width:100%;min-width:0;background:var(--panel);color:white;border:1px solid var(--line);padding:15px;border-radius:9px;outline:none}
+.searchbar input:focus{border-color:var(--green)}
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin:14px 0 24px}
+.filter{background:var(--panel);border:1px solid var(--line);border-radius:7px;padding:9px 13px;color:#c1c8d5;cursor:pointer;font-size:12px}
+.filter.active,.filter:hover{background:var(--green);border-color:var(--green);color:#111}
+.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:17px}
+.game{background:var(--panel);border:1px solid var(--line);border-radius:13px;overflow:hidden;transition:transform .2s,border-color .2s}
+.game:hover{transform:translateY(-4px);border-color:#6b784e}
+.game img{display:block;width:100%;aspect-ratio:460/215;object-fit:cover;background:#202431}
+.game-body{padding:15px}
+.tag{font-size:10px;letter-spacing:1px;color:var(--green);font-weight:900}
+.game h3{font-size:17px;margin:9px 0}
+.game p{font-size:12px;line-height:1.65;color:var(--muted);min-height:40px}
+.game-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;margin-top:14px}
+.platform{font-size:10px;color:#c2c8d3}
+.link{font-size:11px;font-weight:900;color:var(--green)}
+.empty{display:none;border:1px dashed var(--line);padding:30px;text-align:center;color:var(--muted);border-radius:10px}
+.feature-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin:25px 0 45px}
+.feature{padding:23px;background:var(--panel);border:1px solid var(--line);border-radius:12px}
+.feature .emoji{font-size:26px}
+.feature h3{font-size:17px}
+.feature p{font-size:13px;color:var(--muted);line-height:1.8}
+.feature a{color:var(--green);font-size:12px;font-weight:900}
+.help-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:20px 0 45px}
+.help{padding:17px;background:var(--panel);border:1px solid var(--line);border-radius:10px}
+.help strong{display:block;margin-bottom:8px}
+footer{border-top:1px solid var(--line);padding:28px 22px;color:var(--muted);font-size:12px;line-height:1.8}
+.footer-inner{max-width:1200px;margin:auto;display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap}
+@media(max-width:900px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:600px){.nav{padding:14px}.logo{font-size:20px}nav{gap:12px;font-size:11px}.hero{padding:14px}.hero-box{min-height:340px;padding:27px 22px}h1{letter-spacing:-2px}main{padding:0 14px 45px}.grid{gap:10px}.game-body{padding:11px}.game h3{font-size:14px}.game p{font-size:11px}.game-foot{align-items:flex-start;flex-direction:column}.feature-grid,.help-grid{grid-template-columns:1fr}.section-head{align-items:flex-start;flex-direction:column}}
 </style>
 </head>
 <body>
 <header>
-<a class="logo" href="#">GameScope<span>+</span></a>
-<nav>
-<a href="#games">Games</a>
-<a href="#free">Free Games</a>
-<a href="#guides">Guides & Fixes</a>
-<a href="#deals">Deals</a>
-</nav>
+  <div class="nav">
+    <a class="logo" href="#">GameScope<span>+</span></a>
+    <nav>
+      <a href="#games">Games</a>
+      <a href="#free">Free games</a>
+      <a href="#guides">Help & fixes</a>
+    </nav>
+  </div>
 </header>
 
-<main class="wrap">
 <section class="hero">
-<img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="Grand Theft Auto V artwork">
-<div class="heroText">
-<div class="tag">YOUR GAMING UNIVERSE</div>
-<h1>Play more.<br>Discover more.</h1>
-<p>Explore games, find free-to-play titles, compare deals and get help fixing your favourite games.</p>
-<a class="btn" href="#games">EXPLORE GAMES ↗</a>
-</div>
+  <div class="hero-box">
+    <div class="eyebrow">YOUR GAMING UNIVERSE</div>
+    <h1>Find your<br>next obsession.</h1>
+    <p>Discover games across platforms, explore free-to-play adventures and head straight to official game pages.</p>
+    <a class="btn" href="#games">EXPLORE THE LIBRARY ↗</a>
+  </div>
 </section>
 
-<div class="tag">EXPLORE THE LIBRARY</div>
-<h2 id="games">Games worth checking out</h2>
-<div class="toolbar">
-<input id="search" placeholder="Search games..." aria-label="Search games">
-<button class="active" data-filter="all">All</button>
-<button data-filter="PC">PC</button>
-<button data-filter="PlayStation">PlayStation</button>
-<button data-filter="Xbox">Xbox</button>
-<button data-filter="Free">Free to play</button>
-</div>
+<main>
+  <section id="games">
+    <div class="section-head">
+      <div><div class="eyebrow">THE GAME LIBRARY</div><h2>Find your next game</h2><div class="muted">Search by name or filter by platform and game type.</div></div>
+      <div class="muted" id="resultCount" aria-live="polite">8 games</div>
+    </div>
+    <div class="searchbar">
+      <input id="search" type="search" placeholder="🔎 Search games, genres or platforms..." aria-label="Search games">
+    </div>
+    <div class="filters" id="filters">
+      <button class="filter active" data-filter="all">All games</button>
+      <button class="filter" data-filter="PC">PC</button>
+      <button class="filter" data-filter="PlayStation">PlayStation</button>
+      <button class="filter" data-filter="Xbox">Xbox</button>
+      <button class="filter" data-filter="Nintendo">Nintendo</button>
+      <button class="filter" data-filter="Mobile">Mobile</button>
+      <button class="filter" data-filter="free">Free to play</button>
+    </div>
+    <div class="grid" id="gameGrid">
+      <article class="game" data-name="Grand Theft Auto V GTA 5 open world action" data-platforms="PC PlayStation Xbox" data-free="no">
+        <a href="https://www.rockstargames.com/gta-v" target="_blank" rel="noopener"><img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="Grand Theft Auto V" loading="lazy"></a>
+        <div class="game-body"><span class="tag">OPEN WORLD</span><h3>Grand Theft Auto V</h3><p>Explore Los Santos in Rockstar's open-world action game.</p><div class="game-foot"><span class="platform">PC · PlayStation · Xbox</span><a class="link" href="https://www.rockstargames.com/gta-v" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a></div></div>
+      </article>
+      <article class="game" data-name="Cyberpunk 2077 sci fi action RPG role playing" data-platforms="PC PlayStation Xbox" data-free="no">
+        <a href="https://www.cyberpunk.net/" target="_blank" rel="noopener"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077" loading="lazy"></a>
+        <div class="game-body"><span class="tag">ACTION RPG</span><h3>Cyberpunk 2077</h3><p>Discover Night City in a futuristic role-playing adventure.</p><div class="game-foot"><span class="platform">PC · PlayStation · Xbox</span><a class="link" href="https://www.cyberpunk.net/" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a></div></div>
+      </article>
+      <article class="game" data-name="Elden Ring fantasy souls action RPG" data-platforms="PC PlayStation Xbox" data-free="no">
+        <a href="https://en.bandainamcoent.eu/elden-ring/elden-ring" target="_blank" rel="noopener"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring" loading="lazy"></a>
+        <div class="game-body"><span class="tag">ACTION RPG</span><h3>ELDEN RING</h3><p>Explore a vast fantasy world filled with formidable enemies.</p><div class="game-foot"><span class="platform">PC · PlayStation · Xbox</span><a class="link" href="https://en.bandainamcoent.eu/elden-ring/elden-ring" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a></div></div>
+      </article>
+      <article class="game" data-name="PUBG Battlegrounds battle royale shooter" data-platforms="PC PlayStation Xbox Mobile" data-free="yes">
+        <a href="https://www.pubg.com/" target="_blank" rel="noopener"><img src="https://cdn.akamai.steamstatic.com/steam/apps/578080/header.jpg" alt="PUBG Battlegrounds" loading="lazy"></a>
+        <div class="game-body"><span class="tag">FREE TO PLAY</span><h3>PUBG: BATTLEGROUNDS</h3><p>Fight to survive in this competitive battle royale.</p><div class="game-foot"><span class="platform">PC · Console · Mobile</span><a class="link" href="https://www.pubg.com/" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a></div></div>
+      </article>
+      <article class="game" data-name="Apex Legends free battle royale hero shooter" data-platforms="PC PlayStation Xbox Nintendo" data-free="yes">
+        <a href="https://www.ea.com/games/apex-legends" target="_blank" rel="noopener"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg" alt="Apex Legends" loading="lazy"></a>
+        <div class="game-body"><span class="tag">FREE TO PLAY</span><h3>Apex Legends</h3><p>A squad-based hero shooter with fast-paced combat.</p><div class="game-foot"><span class="platform">PC · Console</span><a class="link" href="https://www.ea.com/games/apex-legends" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a></div></div>
+      </article>
+      <article class="game" data-name="Forza Horizon 5 racing cars driving open world" data-platforms="PC Xbox PlayStation" data-free="no">
+        <a href="https://forza.net/" target="_blank" rel="noopener"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg" alt="Forza Horizon 5" loading="lazy"></a>
+        <div class="game-body"><span class="tag">RACING</span><h3>Forza Horizon 5</h3><p>Drive through a huge open-world racing playground.</p><div class="game-foot"><span class="platform">PC · Xbox · PlayStation</span><a class="link" href="https://forza.net/" target="_blank" rel="noopener">FORZA WEBSITE ↗</a></div></div>
+      </article>
+      <article class="game" data-name="Team Fortress 2 multiplayer team shooter free" data-platforms="PC" data-free="yes">
+        <a href="https://www.teamfortress.com/" target="_blank" rel="noopener"><img src="https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg" alt="Team Fortress 2" loading="lazy"></a>
+        <div class="game-body"><span class="tag">FREE TO PLAY</span><h3>Team Fortress 2</h3><p>A colourful team-based multiplayer shooter.</p><div class="game-foot"><span class="platform">PC</span><a class="link" href="https://www.teamfortress.com/" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a></div></div>
+      </article>
+      <article class="game" data-name="Warframe sci fi action co-op free" data-platforms="PC PlayStation Xbox Nintendo" data-free="yes">
+        <a href="https://www.warframe.com/" target="_blank" rel="noopener"><img src="https://cdn.akamai.steamstatic.com/steam/apps/230410/header.jpg" alt="Warframe" loading="lazy"></a>
+        <div class="game-body"><span class="tag">FREE TO PLAY</span><h3>Warframe</h3><p>Fast-paced sci-fi action with extensive customisation.</p><div class="game-foot"><span class="platform">PC · Console · Switch</span><a class="link" href="https://www.warframe.com/" target="_blank" rel="noopener">OFFICIAL PAGE ↗</a></div></div>
+      </article>
+    </div>
+    <div class="empty" id="empty">No games found. Try another search or filter.</div>
+  </section>
 
-<section class="grid" id="gameGrid">
-<article class="card" data-name="Grand Theft Auto V GTA action open world" data-platform="PC PlayStation Xbox">
-<a href="https://www.rockstargames.com/gta-v" target="_blank" rel="noopener">
-<img src="https://cdn.akamai.steamstatic.com/steam/apps/271590/header.jpg" alt="Grand Theft Auto V" loading="lazy">
-<div class="info"><span class="label">OPEN WORLD</span><h3>Grand Theft Auto V</h3><p>Explore Los Santos in Rockstar's open-world action game.</p><span class="smallLink">OFFICIAL GAME PAGE ↗</span></div>
-</a></article>
+  <section id="free">
+    <div class="section-head"><div><div class="eyebrow">PLAY MORE, SPEND LESS</div><h2>Free games & deals</h2><div class="muted">These links open external services. Offers can change by region and date.</div></div></div>
+    <div class="feature-grid">
+      <div class="feature"><div class="emoji">🎁</div><h3>Free games</h3><p>Check current giveaways and free PC games from official stores.</p><a href="https://store.epicgames.com/en-US/free-games" target="_blank" rel="noopener">EXPLORE FREE GAMES ↗</a></div>
+      <div class="feature"><div class="emoji">💸</div><h3>Compare prices</h3><p>Compare PC game offers before you buy. Check the edition and region.</p><a href="https://isthereanydeal.com/" target="_blank" rel="noopener">CHECK GAME DEALS ↗</a></div>
+      <div class="feature"><div class="emoji">🕹️</div><h3>Free-to-play games</h3><p>Use the library filter above to find games marked free to play.</p><a href="#games" id="showFree">SHOW FREE GAMES ↗</a></div>
+    </div>
+  </section>
 
-<article class="card" data-name="Cyberpunk 2077 RPG action" data-platform="PC PlayStation Xbox">
-<a href="https://www.cyberpunk.net/" target="_blank" rel="noopener">
-<img src="https://cdn.akamai.steamstatic.com/steam/apps/1091500/header.jpg" alt="Cyberpunk 2077" loading="lazy">
-<div class="info"><span class="label">ACTION RPG</span><h3>Cyberpunk 2077</h3><p>Discover Night City in a futuristic role-playing adventure.</p><span class="smallLink">OFFICIAL GAME PAGE ↗</span></div>
-</a></article>
-
-<article class="card" data-name="Elden Ring fantasy action RPG" data-platform="PC PlayStation Xbox">
-<a href="https://en.bandainamcoent.eu/elden-ring/elden-ring" target="_blank" rel="noopener">
-<img src="https://cdn.akamai.steamstatic.com/steam/apps/1245620/header.jpg" alt="Elden Ring" loading="lazy">
-<div class="info"><span class="label">ACTION RPG</span><h3>ELDEN RING</h3><p>Explore a vast fantasy world filled with formidable enemies.</p><span class="smallLink">OFFICIAL GAME PAGE ↗</span></div>
-</a></article>
-
-<article class="card" data-name="PUBG Battlegrounds battle royale free" data-platform="PC Free">
-<a href="https://www.pubg.com/" target="_blank" rel="noopener">
-<img src="https://cdn.akamai.steamstatic.com/steam/apps/578080/header.jpg" alt="PUBG Battlegrounds" loading="lazy">
-<div class="info"><span class="label">FREE TO PLAY</span><h3>PUBG: BATTLEGROUNDS</h3><p>Fight to survive in this competitive battle royale.</p><span class="smallLink">OFFICIAL GAME PAGE ↗</span></div>
-</a></article>
-
-<article class="card" data-name="Apex Legends free shooter battle royale" data-platform="PC PlayStation Xbox Free">
-<a href="https://www.ea.com/games/apex-legends" target="_blank" rel="noopener">
-<img src="https://cdn.akamai.steamstatic.com/steam/apps/1172470/header.jpg" alt="Apex Legends" loading="lazy">
-<div class="info"><span class="label">FREE TO PLAY</span><h3>Apex Legends</h3><p>A squad-based hero shooter with fast-paced combat.</p><span class="smallLink">OFFICIAL GAME PAGE ↗</span></div>
-</a></article>
-
-<article class="card" data-name="Forza Horizon 5 racing driving" data-platform="PC Xbox">
-<a href="https://forza.net/" target="_blank" rel="noopener">
-<img src="https://cdn.akamai.steamstatic.com/steam/apps/1551360/header.jpg" alt="Forza Horizon 5" loading="lazy">
-<div class="info"><span class="label">RACING</span><h3>Forza Horizon 5</h3><p>Drive through a huge open-world racing playground.</p><span class="smallLink">FORZA WEBSITE ↗</span></div>
-</a></article>
-
-<article class="card" data-name="Team Fortress 2 multiplayer free shooter" data-platform="PC Free">
-<a href="https://www.teamfortress.com/" target="_blank" rel="noopener">
-<img src="https://cdn.akamai.steamstatic.com/steam/apps/440/header.jpg" alt="Team Fortress 2" loading="lazy">
-<div class="info"><span class="label">FREE TO PLAY</span><h3>Team Fortress 2</h3><p>A colourful team-based multiplayer shooter.</p><span class="smallLink">OFFICIAL GAME PAGE ↗</span></div>
-</a></article>
-
-<article class="card" data-name="Warframe free action sci-fi" data-platform="PC PlayStation Xbox Free">
-<a href="https://www.warframe.com/" target="_blank" rel="noopener">
-<img src="https://cdn.akamai.steamstatic.com/steam/apps/230410/header.jpg" alt="Warframe" loading="lazy">
-<div class="info"><span class="label">FREE TO PLAY</span><h3>Warframe</h3><p>Fast-paced sci-fi action with extensive customisation.</p><span class="smallLink">OFFICIAL GAME PAGE ↗</span></div>
-</a></article>
-</section>
-<p id="empty" hidden>No games found. Try a different search.</p>
-
-<section class="features">
-<div class="feature" id="free">
-<div class="tag">SAVE YOUR MONEY</div>
-<h2>Free games & giveaways</h2>
-<p>Check official stores for free games and limited-time promotions. Availability can change by region and date.</p>
-<a class="btn" href="https://store.epicgames.com/en-US/free-games" target="_blank" rel="noopener">FIND FREE GAMES ↗</a>
-</div>
-<div class="feature" id="deals">
-<div class="tag">SMARTER SHOPPING</div>
-<h2>Compare game prices</h2>
-<p>Compare offers before buying. Always check the platform, edition and region restrictions.</p>
-<a class="btn" href="https://isthereanydeal.com/" target="_blank" rel="noopener">CHECK PC DEALS ↗</a>
-</div>
-</section>
-
-<div class="tag" style="margin-top:40px">HELP WHEN GAMES BREAK</div>
-<h2 id="guides">Guides & troubleshooting</h2>
-<section class="guides">
-<a class="guide" href="https://support.xbox.com/" target="_blank" rel="noopener"><h3>Xbox Support</h3><p>Installation, updates, network and error help ↗</p></a>
-<a class="guide" href="https://www.playstation.com/support/" target="_blank" rel="noopener"><h3>PlayStation Support</h3><p>PS5 and PS4 downloads, storage and errors ↗</p></a>
-<a class="guide" href="https://help.steampowered.com/" target="_blank" rel="noopener"><h3>Steam & PC Help</h3><p>Game launches, downloads and account problems ↗</p></a>
-<a class="guide" href="https://www.nintendo.com/us/support/" target="_blank" rel="noopener"><h3>Nintendo Support</h3><p>Console and game troubleshooting ↗</p></a>
-<a class="guide" href="https://support.google.com/googleplay/" target="_blank" rel="noopener"><h3>Android Games</h3><p>Download and Google Play help ↗</p></a>
-<a class="guide" href="https://support.apple.com/" target="_blank" rel="noopener"><h3>iPhone & iPad</h3><p>Game installation and device support ↗</p></a>
-</section>
+  <section id="guides">
+    <div class="eyebrow">NEED A FIX?</div><h2>Guides & troubleshooting</h2>
+    <p class="muted">Go to official support when a game will not launch, download or connect.</p>
+    <div class="help-grid">
+      <a class="help" href="https://help.steampowered.com/" target="_blank" rel="noopener"><strong>💻 Steam & PC</strong><span class="muted">Downloads, crashes and account issues ↗</span></a>
+      <a class="help" href="https://support.xbox.com/" target="_blank" rel="noopener"><strong>🟩 Xbox</strong><span class="muted">Installation, updates and network help ↗</span></a>
+      <a class="help" href="https://www.playstation.com/support/" target="_blank" rel="noopener"><strong>🎮 PlayStation</strong><span class="muted">PS5 and PS4 support ↗</span></a>
+      <a class="help" href="https://www.nintendo.com/us/support/" target="_blank" rel="noopener"><strong>🔴 Nintendo</strong><span class="muted">Console and game support ↗</span></a>
+      <a class="help" href="https://support.google.com/googleplay/" target="_blank" rel="noopener"><strong>📱 Android</strong><span class="muted">Google Play and app help ↗</span></a>
+      <a class="help" href="https://support.apple.com/" target="_blank" rel="noopener"><strong>🍎 iPhone & iPad</strong><span class="muted">Apple device support ↗</span></a>
+    </div>
+  </section>
 </main>
 
-<footer>
-<strong>GameScope<span style="color:var(--lime)">+</span></strong><br>
-Gaming discoveries, free games, deals and practical guides.<br>
-Game artwork and trademarks belong to their respective owners. GameScope+ is an independent project.
-</footer>
+<footer><div class="footer-inner"><div><a class="logo" href="#">GameScope<span>+</span></a><p>Gaming discoveries, free games and practical help.</p></div><div>Independent gaming project. Game artwork and trademarks belong to their respective owners.<br>External links open third-party websites.</div></div></footer>
 
 <script>
-const search=document.getElementById('search');
-const cards=[...document.querySelectorAll('.card')];
-const buttons=[...document.querySelectorAll('[data-filter]')];
-const empty=document.getElementById('empty');
-let filter='all';
-function updateGames(){
- let visible=0;
- const q=search.value.toLowerCase().trim();
- cards.forEach(card=>{
-  const matchesText=(card.dataset.name+' '+card.textContent).toLowerCase().includes(q);
-  const matchesFilter=filter==='all'||card.dataset.platform.split(' ').includes(filter);
-  const show=matchesText&&matchesFilter;
-  card.hidden=!show;
-  if(show)visible++;
- });
- empty.hidden=visible>0;
+const search = document.getElementById('search');
+const cards = [...document.querySelectorAll('.game')];
+const buttons = [...document.querySelectorAll('.filter')];
+const count = document.getElementById('resultCount');
+const empty = document.getElementById('empty');
+let activeFilter = 'all';
+
+function filterGames() {
+  const term = search.value.trim().toLowerCase();
+  let visible = 0;
+
+  cards.forEach(card => {
+    const name = (card.dataset.name + ' ' + card.textContent).toLowerCase();
+    const platforms = card.dataset.platforms.split(' ');
+    const isFree = card.dataset.free === 'yes';
+    const matchesText = name.includes(term);
+    const matchesFilter = activeFilter === 'all'
+      || (activeFilter === 'free' && isFree)
+      || platforms.includes(activeFilter);
+    const show = matchesText && matchesFilter;
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+
+  count.textContent = visible + (visible === 1 ? ' game' : ' games');
+  empty.style.display = visible ? 'none' : 'block';
 }
-search.addEventListener('input',updateGames);
-buttons.forEach(btn=>btn.addEventListener('click',()=>{
- buttons.forEach(b=>b.classList.remove('active'));
- btn.classList.add('active');
- filter=btn.dataset.filter;
- updateGames();
-}));
+
+search.addEventListener('input', filterGames);
+
+buttons.forEach(button => {
+  button.addEventListener('click', () => {
+    activeFilter = button.dataset.filter;
+    buttons.forEach(item => item.classList.toggle('active', item === button));
+    filterGames();
+  });
+});
+
+document.getElementById('showFree').addEventListener('click', () => {
+  activeFilter = 'free';
+  buttons.forEach(item => item.classList.toggle('active', item.dataset.filter === 'free'));
+  filterGames();
+});
+
+filterGames();
 </script>
 </body>
 </html>
